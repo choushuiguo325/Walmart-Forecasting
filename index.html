@@ -1,0 +1,1049 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Coding</title><style>
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	text-indent: -1.7em;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, YuMincho, "Yu Mincho", "Hiragino Mincho ProN", "Hiragino Mincho Pro", "Songti TC", "Songti SC", "SimSun", "Nanum Myeongjo", NanumMyeongjo, Batang, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC', 'Noto Sans CJK KR'; }
+
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC', 'Noto Sans Mono CJK KR'; }
+
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, YuMincho, "Yu Mincho", "Hiragino Mincho ProN", "Hiragino Mincho Pro", "Songti TC", "Songti SC", "SimSun", "Nanum Myeongjo", NanumMyeongjo, Batang, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC', 'Noto Sans CJK KR'; }
+
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC', 'Noto Sans Mono CJK KR'; }
+
+.highlight-default {
+}
+.highlight-gray {
+	color: rgb(155,154,151);
+}
+.highlight-brown {
+	color: rgb(100,71,58);
+}
+.highlight-orange {
+	color: rgb(217,115,13);
+}
+.highlight-yellow {
+	color: rgb(223,171,1);
+}
+.highlight-teal {
+	color: rgb(15,123,108);
+}
+.highlight-blue {
+	color: rgb(11,110,153);
+}
+.highlight-purple {
+	color: rgb(105,64,165);
+}
+.highlight-pink {
+	color: rgb(173,26,114);
+}
+.highlight-red {
+	color: rgb(224,62,62);
+}
+.highlight-gray_background {
+	background: rgb(235,236,237);
+}
+.highlight-brown_background {
+	background: rgb(233,229,227);
+}
+.highlight-orange_background {
+	background: rgb(250,235,221);
+}
+.highlight-yellow_background {
+	background: rgb(251,243,219);
+}
+.highlight-teal_background {
+	background: rgb(221,237,234);
+}
+.highlight-blue_background {
+	background: rgb(221,235,241);
+}
+.highlight-purple_background {
+	background: rgb(234,228,242);
+}
+.highlight-pink_background {
+	background: rgb(244,223,235);
+}
+.highlight-red_background {
+	background: rgb(251,228,228);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(55, 53, 47, 0.6);
+	fill: rgba(55, 53, 47, 0.6);
+}
+.block-color-brown {
+	color: rgb(100,71,58);
+	fill: rgb(100,71,58);
+}
+.block-color-orange {
+	color: rgb(217,115,13);
+	fill: rgb(217,115,13);
+}
+.block-color-yellow {
+	color: rgb(223,171,1);
+	fill: rgb(223,171,1);
+}
+.block-color-teal {
+	color: rgb(15,123,108);
+	fill: rgb(15,123,108);
+}
+.block-color-blue {
+	color: rgb(11,110,153);
+	fill: rgb(11,110,153);
+}
+.block-color-purple {
+	color: rgb(105,64,165);
+	fill: rgb(105,64,165);
+}
+.block-color-pink {
+	color: rgb(173,26,114);
+	fill: rgb(173,26,114);
+}
+.block-color-red {
+	color: rgb(224,62,62);
+	fill: rgb(224,62,62);
+}
+.block-color-gray_background {
+	background: rgb(235,236,237);
+}
+.block-color-brown_background {
+	background: rgb(233,229,227);
+}
+.block-color-orange_background {
+	background: rgb(250,235,221);
+}
+.block-color-yellow_background {
+	background: rgb(251,243,219);
+}
+.block-color-teal_background {
+	background: rgb(221,237,234);
+}
+.block-color-blue_background {
+	background: rgb(221,235,241);
+}
+.block-color-purple_background {
+	background: rgb(234,228,242);
+}
+.block-color-pink_background {
+	background: rgb(244,223,235);
+}
+.block-color-red_background {
+	background: rgb(251,228,228);
+}
+.select-value-color-default { background-color: rgba(206,205,202,0.5); }
+.select-value-color-gray { background-color: rgba(155,154,151, 0.4); }
+.select-value-color-brown { background-color: rgba(140,46,0,0.2); }
+.select-value-color-orange { background-color: rgba(245,93,0,0.2); }
+.select-value-color-yellow { background-color: rgba(233,168,0,0.2); }
+.select-value-color-green { background-color: rgba(0,135,107,0.2); }
+.select-value-color-blue { background-color: rgba(0,120,223,0.2); }
+.select-value-color-purple { background-color: rgba(103,36,222,0.2); }
+.select-value-color-pink { background-color: rgba(221,0,129,0.2); }
+.select-value-color-red { background-color: rgba(255,0,26,0.2); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="8c355fd0-8a9a-4979-93be-a461290183cf" class="page sans"><header><img class="page-cover-image" src="https://images.unsplash.com/photo-1592991538534-00972b6f59ab?ixlib=rb-1.2.1&amp;q=85&amp;fm=jpg&amp;crop=entropy&amp;cs=srgb" style="object-position:center 50%"/><div class="page-header-icon page-header-icon-with-cover"><span class="icon">⌨️</span></div><h1 class="page-title">Coding</h1></header><div class="page-body"><div id="99f6bdca-aa52-4fa8-bcfe-325d7554ed56" class="column-list"><div id="38d967fb-ceba-4a3c-ae37-16d4b142b8e9" style="width:50%" class="column"><p id="62bafd80-3bc4-4041-88c6-d8c085105b67" class=""><a href="https://www.notion.so/Machine-Learning-3d2c786e2a9c42e499f0338a54241c68"><span class="icon">🎄</span>Machine Learning</a> </p><p id="3c120f04-cfb1-40a4-a6b7-ea63327b61ef" class=""><a href="https://www.notion.so/Statistic-Probability-50040802d24940d69d14e273f75b9a74"><span class="icon">❓</span>Statistic &amp; Probability</a> </p><p id="1436b81d-2fa3-49cb-9991-70d96044dcf9" class=""><a href="https://www.notion.so/Behavior-Question-67f2a189ca594435a4c9c6deda8f3161"><span class="icon">😊</span>Behavior Question</a> </p></div><div id="f911dcdd-5460-42b7-a6b8-f1b86f107571" style="width:50%" class="column"><p id="d27aa2bf-2126-4dc6-9e7f-2a60a9c6f562" class=""><a href="https://www.notion.so/Product-Sense-7f32e7f47c96412b884b86e01fe9219e"><span class="icon">🍼</span>Product Sense</a> </p><p id="61bbf25a-f1e9-4d09-8906-9c8f79bbf7dc" class=""><a href="https://www.notion.so/Experiment-Design-413b0f69974f44f4bc3922f7482a8bde"><span class="icon">🧪</span>Experiment Design</a> </p><p id="6280e92a-1a83-4f68-bbb4-5bfa4532eeeb" class="">
+</p></div></div><h1 id="b93065dd-3684-4807-bdeb-3db2e6d54c7c" class="block-color-blue_background"> 🐳 LeetCode: Resources</h1><h3 id="b3a9a37f-01a7-4bb4-886f-f0e7a674e05b" class="">Resources</h3><ul id="f9fca025-e555-48bb-9c9a-01d354e93be3" class="bulleted-list"><li><a href="https://www.mysqltutorial.org/mysql-derived-table/">Derived Table Alias</a></li></ul><ul id="c102b5a6-5884-4308-a5cf-025f0ee54772" class="bulleted-list"><li><a href="https://www.w3schools.com/sql/sql_like.asp">like operator</a></li></ul><ul id="a5adef8e-a4cf-4dd2-ba06-462d0bee232d" class="bulleted-list"><li><a href="https://docs.microsoft.com/en-us/sql/t-sql/functions/row-number-transact-sql?view=sql-server-ver15">row_number()</a></li></ul><ul id="b9de8d56-7d78-42d3-b2db-d1023bbba6bf" class="bulleted-list"><li><a href="https://www.math.brown.edu/johsilve/ReferenceCards/TeXRefCard.v1.5.pdf">latex</a></li></ul><figure id="278dc3ac-fba4-403d-b86b-65f6a8e32839"><div class="source"><a href="Coding%20278dc3acfba4403db86b65f6a8e32839/SQL-cheat-sheet.pdf">https://s3-us-west-2.amazonaws.com/secure.notion-static.com/ffff6d2b-e366-4cdf-a4c7-881d74d991c5/SQL-cheat-sheet.pdf</a></div></figure><h1 id="289367aa-37a4-4b3a-a756-cde500408e38" class="block-color-teal_background"> 📅 LeetCode: Records</h1><ul id="f95c61fd-7b4a-4998-8a17-6063da020bd4" class="bulleted-list"><li><a href="https://docs.google.com/spreadsheets/d/1JrV4YsibexLr2XzJy0c3QszZ40cLNypxsWUD0bxAW4Y/edit#gid=0">📅 leetcode 打卡 </a></li></ul><ul id="f03a8547-1cde-4902-a67b-ca1be9793b6b" class="bulleted-list"><li><a href="https://leetcode.com/problemset/database/">🍎 leetcode 题库</a></li></ul><ul id="778be7fa-e38f-4a5e-b187-b6b652446b61" class="bulleted-list"><li><a href="https://leetcode.com/problemset/database/?difficulty=Medium">🐳leetcode题库m</a></li></ul><div id="c1de60c9-e42b-4436-889f-0bae8b804eb9" class="collection-content"><h4 class="collection-title">Records</h4><table class="collection-content"><thead><tr><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesTitle"><path d="M7.73943662,8.6971831 C7.77640845,8.7834507 7.81338028,8.8943662 7.81338028,9.00528169 C7.81338028,9.49823944 7.40669014,9.89260563 6.91373239,9.89260563 C6.53169014,9.89260563 6.19894366,9.64612676 6.08802817,9.30105634 L5.75528169,8.33978873 L2.05809859,8.33978873 L1.72535211,9.30105634 C1.61443662,9.64612676 1.2693662,9.89260563 0.887323944,9.89260563 C0.394366197,9.89260563 0,9.49823944 0,9.00528169 C0,8.8943662 0.0246478873,8.7834507 0.0616197183,8.6971831 L2.46478873,2.48591549 C2.68661972,1.90669014 3.24119718,1.5 3.90669014,1.5 C4.55985915,1.5 5.12676056,1.90669014 5.34859155,2.48591549 L7.73943662,8.6971831 Z M2.60035211,6.82394366 L5.21302817,6.82394366 L3.90669014,3.10211268 L2.60035211,6.82394366 Z M11.3996479,3.70598592 C12.7552817,3.70598592 14,4.24823944 14,5.96126761 L14,9.07922535 C14,9.52288732 13.6549296,9.89260563 13.2112676,9.89260563 C12.8169014,9.89260563 12.471831,9.59683099 12.4225352,9.19014085 C12.028169,9.6584507 11.3257042,9.95422535 10.5492958,9.95422535 C9.60035211,9.95422535 8.47887324,9.31338028 8.47887324,7.98239437 C8.47887324,6.58978873 9.60035211,6.08450704 10.5492958,6.08450704 C11.3380282,6.08450704 12.040493,6.33098592 12.4348592,6.81161972 L12.4348592,5.98591549 C12.4348592,5.38204225 11.9172535,4.98767606 11.1285211,4.98767606 C10.6602113,4.98767606 10.2411972,5.11091549 9.80985915,5.38204225 C9.72359155,5.43133803 9.61267606,5.46830986 9.50176056,5.46830986 C9.18133803,5.46830986 8.91021127,5.1971831 8.91021127,4.86443662 C8.91021127,4.64260563 9.0334507,4.44542254 9.19366197,4.34683099 C9.87147887,3.90316901 10.6232394,3.70598592 11.3996479,3.70598592 Z M11.1778169,8.8943662 C11.6830986,8.8943662 12.1760563,8.72183099 12.4348592,8.37676056 L12.4348592,7.63732394 C12.1760563,7.29225352 11.6830986,7.11971831 11.1778169,7.11971831 C10.5616197,7.11971831 10.056338,7.45246479 10.056338,8.0193662 C10.056338,8.57394366 10.5616197,8.8943662 11.1778169,8.8943662 Z M0.65625,11.125 L13.34375,11.125 C13.7061869,11.125 14,11.4188131 14,11.78125 C14,12.1436869 13.7061869,12.4375 13.34375,12.4375 L0.65625,12.4375 C0.293813133,12.4375 4.43857149e-17,12.1436869 0,11.78125 C-4.43857149e-17,11.4188131 0.293813133,11.125 0.65625,11.125 Z"></path></svg></span>Date</th><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesNumber"><path d="M4.46191,0 C3.8667,0 3.38428,0.482422 3.38428,1.07751 L3.38428,3.38425 L1.07764,3.38425 C0.482422,3.38425 0,3.86667 0,4.46179 C0,5.05688 0.482422,5.53931 1.07764,5.53931 L3.38428,5.53931 L3.38428,8.46063 L1.07764,8.46063 C0.482422,8.46063 0,8.94308 0,9.53818 C0,10.1333 0.482422,10.6157 1.07764,10.6157 L3.38428,10.6157 L3.38428,12.9224 C3.38428,13.5175 3.8667,13.9999 4.46191,13.9999 C5.05664,13.9999 5.53906,13.5175 5.53906,12.9224 L5.53906,10.6157 L8.46045,10.6157 L8.46045,12.9224 C8.46045,13.5175 8.94287,13.9999 9.53809,13.9999 C10.1333,13.9999 10.6157,13.5175 10.6157,12.9224 L10.6157,10.6157 L12.9224,10.6157 C13.5176,10.6157 14,10.1333 14,9.53818 C14,8.94308 13.5176,8.46063 12.9224,8.46063 L10.6157,8.46063 L10.6157,5.53931 L12.9224,5.53931 C13.5176,5.53931 14,5.05688 14,4.46179 C14,3.86667 13.5176,3.38425 12.9224,3.38425 L10.6157,3.38425 L10.6157,1.07751 C10.6157,0.482422 10.1333,0 9.53809,0 C8.94287,0 8.46045,0.482422 8.46045,1.07751 L8.46045,3.38425 L5.53906,3.38425 L5.53906,1.07751 C5.53906,0.482422 5.05664,0 4.46191,0 Z M5.53906,8.46063 L5.53906,5.53931 L8.46045,5.53931 L8.46045,8.46063 L5.53906,8.46063 Z"></path></svg></span>Min</th><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesFormula"><path d="M7.77892,7.06304 L4.62218,11.2875 C4.58556,11.3416 4.55285,11.4392 4.5504,11.5052 C4.5504,11.7022 4.7047,11.8619 4.89562,11.8619 L11.1383,11.8619 C11.6139,11.8619 11.9996,12.2598 11.9996,12.7507 L11.9996,13.1111 C11.9996,13.602 11.6139,14 11.1383,14 L1.861927,14 C1.385853,14 1.00011061,13.602 1.00011061,13.1111 L1.00011061,12.6858 C0.99718092,12.4783 1.0523567,12.3098 1.176868,12.1466 L4.39269,7.79888 C4.74816,7.31841 4.74572,6.65139 4.38683,6.17354 L1.400013,2.19436 C1.27306,2.03028 1.216419,1.85993 1.219349,1.65006 L1.219349,0.888889 C1.219349,0.397968 1.605091,0 2.08117,0 L10.91906,0 C11.3946,0 11.7804,0.397968 11.7804,0.888889 L11.7804,1.24925 C11.7804,1.74017 11.3946,2.13814 10.91906,2.13814 L5.13634,2.13814 C4.94542,2.13814 4.79064,2.29801 4.79064,2.49522 C4.79308,2.56049 4.82482,2.65709 4.86095,2.71087 L7.78038,6.68628 C7.8297,6.74847 7.84435,6.7934 7.84142,6.87363 C7.84435,6.95493 7.82921,7.00048 7.77892,7.06304 Z"></path></svg></span>Avg</th><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesNumber"><path d="M4.46191,0 C3.8667,0 3.38428,0.482422 3.38428,1.07751 L3.38428,3.38425 L1.07764,3.38425 C0.482422,3.38425 0,3.86667 0,4.46179 C0,5.05688 0.482422,5.53931 1.07764,5.53931 L3.38428,5.53931 L3.38428,8.46063 L1.07764,8.46063 C0.482422,8.46063 0,8.94308 0,9.53818 C0,10.1333 0.482422,10.6157 1.07764,10.6157 L3.38428,10.6157 L3.38428,12.9224 C3.38428,13.5175 3.8667,13.9999 4.46191,13.9999 C5.05664,13.9999 5.53906,13.5175 5.53906,12.9224 L5.53906,10.6157 L8.46045,10.6157 L8.46045,12.9224 C8.46045,13.5175 8.94287,13.9999 9.53809,13.9999 C10.1333,13.9999 10.6157,13.5175 10.6157,12.9224 L10.6157,10.6157 L12.9224,10.6157 C13.5176,10.6157 14,10.1333 14,9.53818 C14,8.94308 13.5176,8.46063 12.9224,8.46063 L10.6157,8.46063 L10.6157,5.53931 L12.9224,5.53931 C13.5176,5.53931 14,5.05688 14,4.46179 C14,3.86667 13.5176,3.38425 12.9224,3.38425 L10.6157,3.38425 L10.6157,1.07751 C10.6157,0.482422 10.1333,0 9.53809,0 C8.94287,0 8.46045,0.482422 8.46045,1.07751 L8.46045,3.38425 L5.53906,3.38425 L5.53906,1.07751 C5.53906,0.482422 5.05664,0 4.46191,0 Z M5.53906,8.46063 L5.53906,5.53931 L8.46045,5.53931 L8.46045,8.46063 L5.53906,8.46063 Z"></path></svg></span>Counts</th><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesMultipleSelect"><path d="M4,3 C4,2.447715 4.447715,2 5,2 L12,2 C12.5523,2 13,2.447716 13,3 C13,3.55228 12.5523,4 12,4 L5,4 C4.447715,4 4,3.55228 4,3 Z M4,7 C4,6.447715 4.447715,6 5,6 L12,6 C12.5523,6 13,6.447716 13,7 C13,7.55228 12.5523,8 12,8 L5,8 C4.447715,8 4,7.55228 4,7 Z M4,11 C4,10.447715 4.447715,10 5,10 L12,10 C12.5523,10 13,10.447716 13,11 C13,11.55228 12.5523,12 12,12 L5,12 C4.447715,12 4,11.55228 4,11 Z M2,4 C1.44771525,4 1,3.55228475 1,3 C1,2.44771525 1.44771525,2 2,2 C2.55228475,2 3,2.44771525 3,3 C3,3.55228475 2.55228475,4 2,4 Z M2,8 C1.44771525,8 1,7.55228475 1,7 C1,6.44771525 1.44771525,6 2,6 C2.55228475,6 3,6.44771525 3,7 C3,7.55228475 2.55228475,8 2,8 Z M2,12 C1.44771525,12 1,11.5522847 1,11 C1,10.4477153 1.44771525,10 2,10 C2.55228475,10 3,10.4477153 3,11 C3,11.5522847 2.55228475,12 2,12 Z"></path></svg></span>Level</th><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesText"><path d="M7,4.56818 C7,4.29204 6.77614,4.06818 6.5,4.06818 L0.5,4.06818 C0.223858,4.06818 0,4.29204 0,4.56818 L0,5.61364 C0,5.88978 0.223858,6.11364 0.5,6.11364 L6.5,6.11364 C6.77614,6.11364 7,5.88978 7,5.61364 L7,4.56818 Z M0.5,1 C0.223858,1 0,1.223858 0,1.5 L0,2.54545 C0,2.8216 0.223858,3.04545 0.5,3.04545 L12.5,3.04545 C12.7761,3.04545 13,2.8216 13,2.54545 L13,1.5 C13,1.223858 12.7761,1 12.5,1 L0.5,1 Z M0,8.68182 C0,8.95796 0.223858,9.18182 0.5,9.18182 L11.5,9.18182 C11.7761,9.18182 12,8.95796 12,8.68182 L12,7.63636 C12,7.36022 11.7761,7.13636 11.5,7.13636 L0.5,7.13636 C0.223858,7.13636 0,7.36022 0,7.63636 L0,8.68182 Z M0,11.75 C0,12.0261 0.223858,12.25 0.5,12.25 L9.5,12.25 C9.77614,12.25 10,12.0261 10,11.75 L10,10.70455 C10,10.4284 9.77614,10.20455 9.5,10.20455 L0.5,10.20455 C0.223858,10.20455 0,10.4284 0,10.70455 L0,11.75 Z"></path></svg></span>Weak Points</th></tr></thead><tbody><tr id="0d7b46fa-5d8c-426f-8126-f9056d575617"><td class="cell-title"><a href="https://www.notion.so/1-7-0d7b46fa5d8c426f8126f9056d575617">1/7</a></td><td class="cell-egkb">100</td><td class="cell-kRAg">7.69</td><td class="cell-[~i@">13</td><td class="cell-IadT"><span class="selected-value select-value-color-brown">Easy(66)</span></td><td class="cell-mxBK">regexp, datadiff(), over</td></tr><tr id="761a1caa-e2b8-49c7-8a8c-53ac61c1a826"><td class="cell-title"><a href="https://www.notion.so/1-8-761a1caae2b849c78a8c53ac61c1a826">1/8</a></td><td class="cell-egkb">190</td><td class="cell-kRAg">12.67</td><td class="cell-[~i@">15</td><td class="cell-IadT"><span class="selected-value select-value-color-brown">Easy(66)</span></td><td class="cell-mxBK">having, over, where; %, mod, round(x,2),multiple group by</td></tr><tr id="e7d61b11-7b4c-4861-ae21-7f5b70d6c81c"><td class="cell-title"><a href="https://www.notion.so/1-9-e7d61b117b4c4861ae217f5b70d6c81c">1/9</a></td><td class="cell-egkb">220</td><td class="cell-kRAg">10</td><td class="cell-[~i@">22</td><td class="cell-IadT"><span class="selected-value select-value-color-brown">Easy(66)</span></td><td class="cell-mxBK">sum(condition), column name without duplicate in join table, between, multiple case, multiple join, like a month, Cartesian join and inner join, with, group_concat, if null</td></tr><tr id="d8290002-e104-4b20-b095-ded41b3947b6"><td class="cell-title"><a href="https://www.notion.so/1-10-d8290002e1044b20b095ded41b3947b6">1/10</a></td><td class="cell-egkb">130</td><td class="cell-kRAg">8.13</td><td class="cell-[~i@">16</td><td class="cell-IadT"><span class="selected-value select-value-color-brown">Easy(66)</span></td><td class="cell-mxBK">left(x,2),right(x,length(x)-1),substring(x,start,length),sum() subtract,date_format(x,&#x27;%Y-%m&#x27;),like &#x27;2020%&#x27;,concat(x,y),upper(),lower()</td></tr><tr id="2bd553c4-7ca2-42c5-9e58-5a952e9fe012"><td class="cell-title"><a href="https://www.notion.so/1-12-2bd553c47ca242c59e585a952e9fe012">1/12</a></td><td class="cell-egkb">40</td><td class="cell-kRAg">20</td><td class="cell-[~i@">2</td><td class="cell-IadT"><span class="selected-value select-value-color-purple">Medium(57)</span></td><td class="cell-mxBK">offset, over, dense_rank over(partition)</td></tr><tr id="ff32cf00-aa9f-42f1-a8a2-59c2020afee8"><td class="cell-title"><a href="https://www.notion.so/1-18-ff32cf00aa9f42f1a8a259c2020afee8">1/18</a></td><td class="cell-egkb">80</td><td class="cell-kRAg">16</td><td class="cell-[~i@">5</td><td class="cell-IadT"><span class="selected-value select-value-color-purple">Medium(57)</span></td><td class="cell-mxBK">having in-group max value, sum() over(partition), row_number() over() id, student</td></tr><tr id="4a47ce5c-e804-4bc9-bee5-6447f903745d"><td class="cell-title"><a href="https://www.notion.so/1-19-4a47ce5ce8044bc9bee56447f903745d">1/19</a></td><td class="cell-egkb">90</td><td class="cell-kRAg">18</td><td class="cell-[~i@">5</td><td class="cell-IadT"><span class="selected-value select-value-color-purple">Medium(57)</span></td><td class="cell-mxBK">sum() over(order by), distinct id, name, where xx in (select)</td></tr><tr id="952a2714-7b6b-49f9-b016-180ca53bc549"><td class="cell-title"><a href="https://www.notion.so/1-20-952a27147b6b49f9b016180ca53bc549">1/20</a></td><td class="cell-egkb">120</td><td class="cell-kRAg">20</td><td class="cell-[~i@">6</td><td class="cell-IadT"><span class="selected-value select-value-color-purple">Medium(57)</span></td><td class="cell-mxBK">partion with group by, with, union</td></tr><tr id="e232ee2a-8316-4a7f-9880-0170fff6b032"><td class="cell-title"><a href="https://www.notion.so/e232ee2a83164a7f98800170fff6b032">Untitled</a></td><td class="cell-egkb"></td><td class="cell-kRAg">0</td><td class="cell-[~i@"></td><td class="cell-IadT"></td><td class="cell-mxBK"></td></tr></tbody></table></div><ul id="278b0089-3882-4db2-b40a-a43e971fe84b" class="toggle"><li><details open=""><summary>Weak points</summary><ul id="65478b2a-0e79-485f-90c8-fa2d5c75f26d" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">alias</span></li></ul><ul id="ec7eb2e6-ba46-44fe-bbbb-3ab551826398" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">group ranking/with-group ranking: Max()?</span></li></ul><ul id="897d15be-c12a-4f99-877e-920cdd5a74ab" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">group filtration/within-group filtration: where/having</span></li></ul><ul id="41282edc-964b-4a58-ade9-8222f63e3ab0" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">only need a.product_id when the column is duplicated. </span></li></ul><ul id="26b95159-b484-40a1-b94f-9a553a3259dc" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">multiple join should define &quot;join&quot;</span></li></ul><ul id="24bf3967-d2c3-4e95-99ed-6744580ab1e8" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">0</span></li></ul><ul id="b1800829-8269-4bc1-9c33-45e0abce678c" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">null</span></li></ul><ul id="9bf72616-7a1d-4ee9-81dc-cc0215bbe1bd" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">distinct</span></li></ul><ul id="e91a10f8-c93d-456d-a514-d1700ba36b86" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">sum(if) and sum(condition)</span></li></ul><ul id="61d7a0af-808b-4c7f-b877-8c799e438bf5" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">dateformating</span></li></ul></details></li></ul><ul id="7a6e440e-fc0d-44de-8a5f-be2f8aeba453" class="toggle"><li><details open=""><summary>Questions</summary><ul id="45c47ccb-88c3-4471-b3f2-b9361eaabc7f" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">how to get the first one/two row in each group? </span><p id="86bd629e-70e6-4124-9f7b-f574fe418ba0" class=""><code>DISTINCT</code>:<a href="https://www.postgresqltutorial.com/postgresql-select-distinct/">https://www.postgresqltutorial.com/postgresql-select-distinct/</a></p></li></ul><ul id="159e7565-8864-4966-a544-131e8fc03922" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">the how to do with-group order and outside-group order? </span></li></ul><ul id="0e885055-2d43-4800-bcf3-4ae53b83661b" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">multiple join? </span></li></ul><ul id="034eb356-37c9-45b0-8181-67c1e1af461f" class="to-do-list"><li><div class="checkbox checkbox-on"></div> <span class="to-do-children-checked">count(condition), sum(condition)? </span></li></ul><ul id="9d576952-7604-42b1-9200-c1ddb3755c73" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">multiply group by —- having ?</span></li></ul><ul id="5ce9bbad-8a7e-4065-98b2-154256ecb7e5" class="to-do-list"><li><div class="checkbox checkbox-on"></div> <span class="to-do-children-checked">sum with condition, sum(x, when???)</span></li></ul><ul id="7f352af3-5c31-470e-9a1e-550cfdfc8cd2" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">when it comes to partition + groupby ???????</span></li></ul><ul id="16ac832b-4bf6-48dc-9583-b5ea21b5cece" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">having all rows meeting a condition??</span></li></ul></details></li></ul><ul id="4c874306-f4ef-498e-a4dd-6437664b17fc" class="toggle"><li><details open=""><summary>Unfamiliar terminology</summary><ul id="092d53bb-7e0d-480c-a8b8-2680631eb72c" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">with</span></li></ul><ul id="acb8a2e4-47ae-48b1-b36b-b0630a7b3653" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">coalesce</span></li></ul><ul id="9a69ce8a-a66c-4b0b-b698-6e68dff36cb3" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">CET</span></li></ul><ul id="44725854-47ad-4f24-9f25-ab2e786ce6c3" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Word cloud</span></li></ul></details></li></ul><h1 id="10d90744-fbe4-49e1-85ed-ab84b6ed25ca" class="block-color-pink_background">LeetCode Knowledge: SQL</h1><h3 id="a8728d53-c773-45ab-a074-e492f1ded4bf" class="">Rank/sort</h3><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css')</style><pre id="f78ee25d-3109-4edf-a99c-dd1585674070" class="code"><code><span class="token keyword">order</span> <span class="token keyword">by</span> a<span class="token punctuation">.</span>Name <span class="token keyword">desc</span>
+<span class="token keyword">limit</span> <span class="token number">1</span> <span class="token keyword">offset</span> <span class="token number">2</span>
+<span class="token comment"># default is ascending</span>
+
+<span class="token keyword">select</span> <span class="token keyword">top</span> <span class="token number">3</span> <span class="token keyword">from</span> students<span class="token punctuation">;</span>
+<span class="token keyword">SELECT</span> <span class="token operator">*</span> <span class="token keyword">FROM</span> Customers <span class="token keyword">WHERE</span> ROWNUM <span class="token operator">&lt;=</span> <span class="token number">3</span><span class="token punctuation">;</span>
+
+<span class="token comment"># 178 return score and corresponding consecutive rank</span>
+<span class="token keyword">select</span> Score<span class="token punctuation">,</span>dense_rank<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token keyword">over</span> <span class="token punctuation">(</span><span class="token keyword">order</span> <span class="token keyword">by</span> Score <span class="token keyword">desc</span><span class="token punctuation">)</span>
+<span class="token keyword">as</span> <span class="token string">'Rank'</span> <span class="token keyword">from</span> Scores<span class="token punctuation">;</span>
+
+DENSE_RANK<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">OVER</span> <span class="token punctuation">(</span>
+    <span class="token punctuation">[</span><span class="token keyword">PARTITION</span> <span class="token keyword">BY</span> partition_expression<span class="token punctuation">,</span> <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span> <span class="token punctuation">]</span>
+    <span class="token keyword">ORDER</span> <span class="token keyword">BY</span> sort_expression <span class="token punctuation">[</span><span class="token keyword">ASC</span> <span class="token operator">|</span> <span class="token keyword">DESC</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+<span class="token punctuation">)</span>
+
+<span class="token comment"># 184 having the max value of each group</span>
+<span class="token keyword">select</span> d<span class="token punctuation">.</span>Name <span class="token keyword">as</span> <span class="token string">"Department"</span><span class="token punctuation">,</span> e<span class="token punctuation">.</span>Name <span class="token keyword">as</span> <span class="token string">"Employee"</span><span class="token punctuation">,</span> Salary
+<span class="token keyword">from</span> Employee e
+<span class="token keyword">join</span> Department d
+<span class="token keyword">on</span> e<span class="token punctuation">.</span>DepartmentId  <span class="token operator">=</span> d<span class="token punctuation">.</span>Id
+<span class="token keyword">where</span> 
+<span class="token punctuation">(</span>e<span class="token punctuation">.</span>DepartmentId<span class="token punctuation">,</span> Salary<span class="token punctuation">)</span> <span class="token operator">in</span> 
+<span class="token punctuation">(</span><span class="token keyword">select</span> DepartmentId<span class="token punctuation">,</span> <span class="token function">Max</span><span class="token punctuation">(</span>Salary<span class="token punctuation">)</span>
+ <span class="token keyword">from</span> Employee
+ <span class="token keyword">group</span> <span class="token keyword">by</span> DepartmentId
+<span class="token punctuation">)</span>
+
+<span class="token comment"># 626</span>
+<span class="token keyword">SELECT</span> ROW_NUMBER<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">OVER</span><span class="token punctuation">(</span><span class="token punctuation">)</span> id<span class="token punctuation">,</span> student
+<span class="token keyword">FROM</span> seat
+<span class="token keyword">ORDER</span> <span class="token keyword">BY</span> <span class="token keyword">IF</span><span class="token punctuation">(</span><span class="token function">MOD</span><span class="token punctuation">(</span>id<span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span> id<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">,</span> id<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">)</span> <span class="token comment"># order without changing the actural id</span>
+
+😱 <span class="token comment"># 1596 get the rank1 in each group. partion + groupby </span>
+<span class="token keyword">select</span> customer_id<span class="token punctuation">,</span> product_id<span class="token punctuation">,</span> product_name
+<span class="token keyword">from</span> <span class="token punctuation">(</span>
+<span class="token keyword">select</span> o<span class="token punctuation">.</span>customer_id<span class="token punctuation">,</span> o<span class="token punctuation">.</span>product_id<span class="token punctuation">,</span> p<span class="token punctuation">.</span>product_name<span class="token punctuation">,</span>
+    rank<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">over</span> <span class="token punctuation">(</span><span class="token keyword">partition</span> <span class="token keyword">by</span> customer_id <span class="token keyword">order</span> <span class="token keyword">by</span> <span class="token function">count</span><span class="token punctuation">(</span>p<span class="token punctuation">.</span>product_id<span class="token punctuation">)</span> <span class="token keyword">desc</span><span class="token punctuation">)</span> <span class="token keyword">as</span> rnk
+    <span class="token keyword">from</span> orders o
+    <span class="token keyword">join</span> products p
+    <span class="token keyword">on</span> o<span class="token punctuation">.</span>product_id <span class="token operator">=</span> p<span class="token punctuation">.</span>product_id
+    <span class="token keyword">group</span> <span class="token keyword">by</span> customer_id<span class="token punctuation">,</span> product_id
+<span class="token punctuation">)</span> ranking
+<span class="token keyword">where</span> rnk <span class="token operator">=</span> <span class="token number">1</span>
+<span class="token keyword">order</span> <span class="token keyword">by</span> customer_id<span class="token punctuation">,</span> product_id
+</code></pre><ul id="553dd1d2-c41f-41d1-a72d-c9d1e6360c70" class="bulleted-list"><li>descending order</li></ul><ul id="2a2b8043-71e8-4578-b98a-a248078577f9" class="bulleted-list"><li>get rid of the first 2 and get the first 1 from the rest</li></ul><h3 id="a01c0720-d1b7-40c1-bd47-ce702ad439e3" class="">Window function </h3><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css')</style><pre id="edd52a93-0b89-4fad-8dfb-22f5d8a15935" class="code"><code>🌟 <span class="token comment"># 534 step sum </span>
+<span class="token keyword">select</span> player_id<span class="token punctuation">,</span> event_date<span class="token punctuation">,</span> 
+<span class="token function">sum</span><span class="token punctuation">(</span>games_played<span class="token punctuation">)</span> <span class="token keyword">over</span><span class="token punctuation">(</span><span class="token keyword">partition</span> <span class="token keyword">by</span> player_id <span class="token keyword">order</span> <span class="token keyword">by</span> event_date<span class="token punctuation">)</span> 
+<span class="token keyword">as</span> <span class="token string">'games_played_so_far'</span>
+<span class="token keyword">from</span> Activity
+<span class="token keyword">order</span> <span class="token keyword">by</span> player_id<span class="token punctuation">,</span> games_played_so_far<span class="token punctuation">;</span>
+<span class="token comment">--- </span>
+which <span class="token operator">is</span> same <span class="token keyword">as</span> 
+<span class="token comment">---</span>
+<span class="token keyword">select</span> a1<span class="token punctuation">.</span>player_id<span class="token punctuation">,</span> a1<span class="token punctuation">.</span>event_date<span class="token punctuation">,</span> <span class="token function">sum</span><span class="token punctuation">(</span>a2<span class="token punctuation">.</span>games_played<span class="token punctuation">)</span> <span class="token keyword">as</span> games_played_so_far
+<span class="token keyword">from</span> activity <span class="token keyword">as</span> a1
+<span class="token keyword">inner</span> <span class="token keyword">join</span> activity <span class="token keyword">as</span> a2
+<span class="token keyword">on</span> a1<span class="token punctuation">.</span>event_date <span class="token operator">>=</span> a2<span class="token punctuation">.</span>event_date
+<span class="token operator">and</span> a1<span class="token punctuation">.</span>player_id <span class="token operator">=</span> a2<span class="token punctuation">.</span>player_id
+<span class="token keyword">group</span> <span class="token keyword">by</span>  a1<span class="token punctuation">.</span>player_id<span class="token punctuation">,</span> a1<span class="token punctuation">.</span>event_date
+
+<span class="token comment"># 1204 sum of weights</span>
+<span class="token keyword">select</span> person_name <span class="token keyword">from</span>
+<span class="token punctuation">(</span><span class="token keyword">select</span> person_name<span class="token punctuation">,</span> <span class="token function">sum</span><span class="token punctuation">(</span>weight<span class="token punctuation">)</span> <span class="token keyword">over</span><span class="token punctuation">(</span><span class="token keyword">order</span> <span class="token keyword">by</span> turn<span class="token punctuation">)</span> <span class="token keyword">as</span> gross_weight <span class="token keyword">from</span> queue<span class="token punctuation">)</span> a
+<span class="token keyword">where</span> gross_weight <span class="token operator">&lt;=</span> <span class="token number">1000</span>
+<span class="token keyword">order</span> <span class="token keyword">by</span> gross_weight <span class="token keyword">desc</span> <span class="token keyword">limit</span> <span class="token number">1</span>
+<span class="token comment">--- </span>
+same <span class="token keyword">as</span> 
+<span class="token keyword">SELECT</span> q1<span class="token punctuation">.</span>person_name
+<span class="token keyword">FROM</span> Queue q1 <span class="token keyword">JOIN</span> Queue q2 <span class="token keyword">ON</span> q1<span class="token punctuation">.</span>turn <span class="token operator">>=</span> q2<span class="token punctuation">.</span>turn
+<span class="token keyword">GROUP</span> <span class="token keyword">BY</span> q1<span class="token punctuation">.</span>turn
+<span class="token keyword">HAVING</span> <span class="token function">SUM</span><span class="token punctuation">(</span>q2<span class="token punctuation">.</span>weight<span class="token punctuation">)</span> <span class="token operator">&lt;=</span> <span class="token number">1000</span>
+<span class="token keyword">ORDER</span> <span class="token keyword">BY</span> <span class="token function">SUM</span><span class="token punctuation">(</span>q2<span class="token punctuation">.</span>weight<span class="token punctuation">)</span> <span class="token keyword">DESC</span>
+<span class="token keyword">LIMIT</span> <span class="token number">1</span></code></pre><h3 id="9c12f49b-5b3b-4dcb-9ad0-f3ee89f3ff9f" class="">Join/Combine</h3><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css')</style><pre id="75100207-1f86-4971-9aa5-df71e563520f" class="code"><code><span class="token comment"># 175 left join</span>
+<span class="token keyword">select</span> p<span class="token punctuation">.</span>FirstName<span class="token punctuation">,</span> p<span class="token punctuation">.</span>LastName<span class="token punctuation">,</span> a<span class="token punctuation">.</span>City<span class="token punctuation">,</span> a<span class="token punctuation">.</span>State  <span class="token comment"># remember not to select *</span>
+<span class="token keyword">from</span> Person <span class="token keyword">as</span> p
+<span class="token keyword">left</span> <span class="token keyword">join</span> Address <span class="token keyword">as</span> a
+<span class="token keyword">on</span> p<span class="token punctuation">.</span>PersonId <span class="token operator">=</span> a<span class="token punctuation">.</span>PersonId<span class="token punctuation">;</span>
+
+Cartesina <span class="token keyword">Join</span><span class="token punctuation">,</span> <span class="token keyword">Cross</span> <span class="token keyword">Join</span>
+<span class="token comment"># 181</span>
+<span class="token keyword">select</span> a<span class="token punctuation">.</span>Name <span class="token keyword">as</span> <span class="token string">"Employee"</span> <span class="token keyword">from</span> Employee <span class="token keyword">as</span> a<span class="token punctuation">,</span> Employee <span class="token keyword">as</span> b
+<span class="token keyword">where</span> a<span class="token punctuation">.</span>ManagerId <span class="token operator">=</span> b<span class="token punctuation">.</span>Id <span class="token operator">and</span> a<span class="token punctuation">.</span>Salary<span class="token operator">></span>b<span class="token punctuation">.</span>Salary
+
+<span class="token comment"># 145</span>
+<span class="token keyword">select</span>  a<span class="token punctuation">.</span>id<span class="token punctuation">,</span> <span class="token keyword">distinct</span> name  <span class="token comment"># does not apply</span>
+<span class="token keyword">select</span> <span class="token keyword">distinct</span> a<span class="token punctuation">.</span>id<span class="token punctuation">,</span> name <span class="token comment"># ok----</span>
+
+<span class="token comment"># 603 </span>
+<span class="token keyword">select</span> <span class="token keyword">distinct</span> b<span class="token punctuation">.</span>seat_id <span class="token comment"># no alias is ok</span>
+<span class="token keyword">from</span> cinema <span class="token keyword">as</span> a<span class="token punctuation">,</span> cinema <span class="token keyword">as</span> b
+<span class="token keyword">where</span> a<span class="token punctuation">.</span>free <span class="token operator">=</span> <span class="token number">1</span>
+<span class="token operator">and</span> b<span class="token punctuation">.</span>free <span class="token operator">=</span> <span class="token number">1</span>  <span class="token comment"># you cannot do that like: a.free = b.free = 1, wrong!</span>
+<span class="token operator">and</span> abs<span class="token punctuation">(</span>b<span class="token punctuation">.</span>seat_id<span class="token operator">-</span>a<span class="token punctuation">.</span>seat_id<span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token number">1</span>
+<span class="token keyword">order</span> <span class="token keyword">by</span> b<span class="token punctuation">.</span>seat_id<span class="token punctuation">;</span>
+
+<span class="token comment"># 1280 cartesian + left join</span>
+<span class="token keyword">select</span> stu<span class="token punctuation">.</span>student_id<span class="token punctuation">,</span> stu<span class="token punctuation">.</span>student_name<span class="token punctuation">,</span> sub<span class="token punctuation">.</span>subject_name<span class="token punctuation">,</span> <span class="token function">count</span><span class="token punctuation">(</span>e<span class="token punctuation">.</span>subject_name<span class="token punctuation">)</span> <span class="token keyword">as</span> attended_exams
+<span class="token keyword">from</span> Students stu 
+<span class="token keyword">join</span> Subjects sub <span class="token comment"># notice we can not use "from Students stu, Subjects sub" and "join" should be menthioned</span>
+<span class="token keyword">left</span> <span class="token keyword">join</span> Examinations e
+<span class="token keyword">on</span> stu<span class="token punctuation">.</span>student_id <span class="token operator">=</span> e<span class="token punctuation">.</span>student_id 
+<span class="token operator">and</span> sub<span class="token punctuation">.</span>subject_name <span class="token operator">=</span> e<span class="token punctuation">.</span>subject_name
+<span class="token keyword">group</span> <span class="token keyword">by</span> stu<span class="token punctuation">.</span>student_id<span class="token punctuation">,</span> sub<span class="token punctuation">.</span>subject_name
+<span class="token keyword">order</span> <span class="token keyword">by</span> stu<span class="token punctuation">.</span>student_id<span class="token punctuation">;</span>
+multiple <span class="token keyword">left</span> <span class="token keyword">join</span>
+
+<span class="token comment"># 1212 left join on or</span>
+<span class="token keyword">ON</span> team_id<span class="token operator">=</span>host_team <span class="token operator">OR</span> team_id<span class="token operator">=</span>guest_team
+
+<span class="token comment"># 614 followers' followers</span>
+<span class="token comment"># no zero values</span>
+<span class="token keyword">select</span> f1<span class="token punctuation">.</span>follower<span class="token punctuation">,</span> <span class="token function">count</span><span class="token punctuation">(</span>f2<span class="token punctuation">.</span>follower<span class="token punctuation">)</span> num
+<span class="token keyword">from</span> follow f1<span class="token punctuation">,</span> follow f2
+<span class="token keyword">where</span> f1<span class="token punctuation">.</span>follower <span class="token operator">=</span> f2<span class="token punctuation">.</span>followee
+<span class="token keyword">group</span> <span class="token keyword">by</span> f1<span class="token punctuation">.</span>follower
+<span class="token comment"># no zero values</span>
+<span class="token keyword">Select</span> f1<span class="token punctuation">.</span>follower<span class="token punctuation">,</span> <span class="token function">count</span><span class="token punctuation">(</span><span class="token keyword">distinct</span> f2<span class="token punctuation">.</span>follower<span class="token punctuation">)</span> <span class="token keyword">as</span> num <span class="token keyword">from</span> follow f1
+<span class="token keyword">join</span> follow f2
+<span class="token keyword">on</span> f1<span class="token punctuation">.</span>follower <span class="token operator">=</span> f2<span class="token punctuation">.</span>followee
+<span class="token keyword">group</span> <span class="token keyword">by</span> f1<span class="token punctuation">.</span>follower
+<span class="token comment"># !! will give zero values</span>
+<span class="token keyword">select</span> f1<span class="token punctuation">.</span>follower<span class="token punctuation">,</span> <span class="token function">count</span><span class="token punctuation">(</span>f2<span class="token punctuation">.</span>follower<span class="token punctuation">)</span> num
+<span class="token keyword">from</span> follow f1
+<span class="token keyword">left</span> <span class="token keyword">join</span> follow f2
+<span class="token keyword">on</span> f1<span class="token punctuation">.</span>follower <span class="token operator">=</span> f2<span class="token punctuation">.</span>followee
+<span class="token keyword">group</span> <span class="token keyword">by</span> f1<span class="token punctuation">.</span>follower
+
+
+<span class="token comment"># 1341 union</span>
+<span class="token punctuation">(</span><span class="token keyword">select</span> name results
+<span class="token keyword">from</span> Movie_Rating r
+<span class="token keyword">left</span> <span class="token keyword">join</span> Users u
+<span class="token keyword">on</span> r<span class="token punctuation">.</span>user_id <span class="token operator">=</span> u<span class="token punctuation">.</span>user_id
+<span class="token keyword">group</span> <span class="token keyword">by</span> r<span class="token punctuation">.</span>user_id
+<span class="token keyword">order</span> <span class="token keyword">by</span> <span class="token function">count</span><span class="token punctuation">(</span><span class="token keyword">distinct</span> movie_id<span class="token punctuation">)</span> <span class="token keyword">desc</span><span class="token punctuation">,</span> name
+<span class="token keyword">limit</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token comment"># pay attention to the well mark</span>
+<span class="token keyword">union</span>
+<span class="token punctuation">(</span><span class="token keyword">select</span> title results
+<span class="token keyword">from</span> Movie_Rating r
+<span class="token keyword">left</span> <span class="token keyword">join</span> Movies m
+<span class="token keyword">on</span> m<span class="token punctuation">.</span>movie_id <span class="token operator">=</span> r<span class="token punctuation">.</span>movie_id
+<span class="token keyword">where</span> created_at <span class="token operator">like</span> <span class="token string">"2020-02%"</span>
+<span class="token keyword">group</span> <span class="token keyword">by</span> title
+<span class="token keyword">order</span> <span class="token keyword">by</span> <span class="token function">avg</span><span class="token punctuation">(</span>rating<span class="token punctuation">)</span> <span class="token keyword">desc</span><span class="token punctuation">,</span> title
+<span class="token keyword">limit</span> <span class="token number">1</span><span class="token punctuation">)</span></code></pre><ul id="dfe76cd0-da2e-46d6-9526-26e19ebb11db" class="bulleted-list"><li>181: combine the same table by two times. Cartesian Join, Cross Join</li></ul><h2 id="9952182c-3dcf-4114-97c6-e4aef0e20cbd" class="">Compare rows</h2><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css')</style><pre id="0701a229-2a23-4c97-bc9b-821cbdecb7bd" class="code"><code><span class="token comment"># 603</span>
+<span class="token keyword">select</span> a<span class="token punctuation">.</span>id <span class="token keyword">from</span> weather <span class="token keyword">as</span> a<span class="token punctuation">,</span> weather <span class="token keyword">as</span> b
+<span class="token keyword">where</span> a<span class="token punctuation">.</span>Temperature <span class="token operator">></span> b<span class="token punctuation">.</span>Temperature
+<span class="token operator">and</span> datediff<span class="token punctuation">(</span>a<span class="token punctuation">.</span>recordDate<span class="token punctuation">,</span> b<span class="token punctuation">.</span>recordDate<span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+
+<span class="token comment"># 1454 5 consecutive days</span>
+<span class="token keyword">SELECT</span> <span class="token keyword">DISTINCT</span> a<span class="token punctuation">.</span>id<span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token keyword">SELECT</span> name <span class="token keyword">FROM</span> Accounts <span class="token keyword">WHERE</span> id<span class="token operator">=</span>a<span class="token punctuation">.</span>id<span class="token punctuation">)</span> name
+<span class="token keyword">FROM</span> Logins a<span class="token punctuation">,</span> Logins b
+<span class="token keyword">WHERE</span> a<span class="token punctuation">.</span>id<span class="token operator">=</span>b<span class="token punctuation">.</span>id <span class="token operator">AND</span>
+DATEDIFF<span class="token punctuation">(</span>a<span class="token punctuation">.</span>login_date<span class="token punctuation">,</span>b<span class="token punctuation">.</span>login_date<span class="token punctuation">)</span> <span class="token operator">BETWEEN</span> <span class="token number">1</span> <span class="token operator">AND</span> <span class="token number">4</span>
+<span class="token keyword">GROUP</span> <span class="token keyword">BY</span> a<span class="token punctuation">.</span>id<span class="token punctuation">,</span> a<span class="token punctuation">.</span>login_date
+<span class="token keyword">HAVING</span> <span class="token function">COUNT</span><span class="token punctuation">(</span><span class="token keyword">DISTINCT</span> b<span class="token punctuation">.</span>login_date<span class="token punctuation">)</span><span class="token operator">=</span><span class="token number">4</span>
+<span class="token punctuation">;</span></code></pre><h2 id="6e694484-13e5-4498-b935-5b6fed6b1712" class="">Condition</h2><h3 id="5a0be97e-ec8d-454f-a02e-5231ea2a8ea6" class="">If/Ifnull/case</h3><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css')</style><pre id="0e84602a-a8f7-4188-908b-c946c47ca3f5" class="code"><code><span class="token comment"># 176</span>
+<span class="token keyword">select</span> ifnull<span class="token punctuation">(</span>
+<span class="token punctuation">(</span><span class="token keyword">select</span> <span class="token keyword">distinct</span> Salary <span class="token keyword">from</span> Employee
+<span class="token keyword">order</span> <span class="token keyword">by</span> Salary <span class="token keyword">desc</span>
+<span class="token keyword">limit</span> <span class="token number">1</span> <span class="token keyword">offset</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token boolean">null</span><span class="token punctuation">)</span> <span class="token keyword">as</span> SecondHighestSalary<span class="token punctuation">;</span>
+
+ifnull<span class="token punctuation">(</span>expression<span class="token punctuation">,</span> specified_value<span class="token punctuation">)</span>: <span class="token keyword">if</span> expression <span class="token operator">is</span> <span class="token boolean">null</span><span class="token punctuation">,</span> <span class="token keyword">return</span> specified_value
+ifnull<span class="token punctuation">(</span><span class="token function">sum</span><span class="token punctuation">(</span>distance<span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">)</span>
+
+<span class="token comment"># 627 if()</span>
+<span class="token keyword">update</span> person
+<span class="token keyword">set</span> sex <span class="token operator">=</span> <span class="token keyword">if</span><span class="token punctuation">(</span>sex <span class="token operator">=</span> <span class="token string">'f'</span><span class="token punctuation">,</span> <span class="token string">'m'</span><span class="token punctuation">,</span> <span class="token string">'f'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">UPDATE</span> YourTable
+<span class="token keyword">SET</span> YourColumn <span class="token operator">+</span><span class="token operator">=</span> <span class="token string">'Appended Data'</span><span class="token punctuation">;</span>
+
+<span class="token comment"># 1484 concatenate the group content</span>
+<span class="token keyword">select</span> sell_date<span class="token punctuation">,</span> <span class="token function">count</span><span class="token punctuation">(</span><span class="token keyword">distinct</span> product<span class="token punctuation">)</span> num_sold<span class="token punctuation">,</span> group_concat<span class="token punctuation">(</span><span class="token keyword">distinct</span> product <span class="token keyword">order</span> <span class="token keyword">by</span> product<span class="token punctuation">)</span> <span class="token keyword">as</span> products
+<span class="token keyword">from</span> Activities
+<span class="token keyword">group</span> <span class="token keyword">by</span> sell_date
+<span class="token keyword">order</span> <span class="token keyword">by</span> sell_date <span class="token punctuation">;</span>
+
+<span class="token comment"># 1179 if()</span>
+<span class="token keyword">select</span> id<span class="token punctuation">,</span> 
+<span class="token function">sum</span><span class="token punctuation">(</span><span class="token keyword">if</span><span class="token punctuation">(</span><span class="token keyword">month</span> <span class="token operator">=</span> <span class="token string">'Jan'</span><span class="token punctuation">,</span> revenue<span class="token punctuation">,</span> <span class="token boolean">null</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token keyword">as</span> Jan_revenue<span class="token punctuation">;</span>
+
+<span class="token comment"># 610 use the if result as a new column!</span>
+<span class="token keyword">select</span> x<span class="token punctuation">,</span>y<span class="token punctuation">,</span>z<span class="token punctuation">,</span><span class="token keyword">if</span><span class="token punctuation">(</span>
+<span class="token punctuation">(</span>x<span class="token operator">+</span>y<span class="token operator">></span>z
+<span class="token operator">and</span> abs<span class="token punctuation">(</span>x<span class="token operator">-</span>y<span class="token punctuation">)</span><span class="token operator">&lt;</span>z<span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token string">"Yes"</span><span class="token punctuation">,</span><span class="token string">"No"</span><span class="token punctuation">)</span> <span class="token keyword">as</span> <span class="token string">"triangle"</span>
+<span class="token keyword">from</span> triangle<span class="token punctuation">;</span>
+<span class="token comment"># case statement</span>
+<span class="token keyword">SELECT</span> x<span class="token punctuation">,</span>y<span class="token punctuation">,</span>z<span class="token punctuation">,</span>
+    <span class="token keyword">CASE</span>
+        <span class="token keyword">WHEN</span> x <span class="token operator">+</span> y <span class="token operator">></span> z <span class="token operator">AND</span> x <span class="token operator">+</span> z <span class="token operator">></span> y <span class="token operator">AND</span> y <span class="token operator">+</span> z <span class="token operator">></span> x <span class="token keyword">THEN</span> <span class="token string">'Yes'</span>
+        <span class="token keyword">ELSE</span> <span class="token string">'No'</span>
+    <span class="token keyword">END</span> <span class="token keyword">AS</span> <span class="token string">'triangle'</span>
+<span class="token keyword">FROM</span> triangle<span class="token punctuation">;</span>
+
+<span class="token function">sum</span><span class="token punctuation">(</span><span class="token keyword">case</span> <span class="token keyword">when</span> order_date <span class="token operator">=</span> customer_pref_delivery_date <span class="token keyword">then</span> <span class="token number">1</span> <span class="token keyword">else</span> <span class="token number">0</span> <span class="token keyword">end</span><span class="token punctuation">)</span>
+
+<span class="token comment"># 1294 multiple cases</span>
+<span class="token keyword">CASE</span> 
+  <span class="token keyword">WHEN</span> x <span class="token operator">=</span> <span class="token number">1</span> <span class="token operator">AND</span> y <span class="token operator">=</span> <span class="token number">2</span> <span class="token keyword">THEN</span> <span class="token string">'a'</span>
+  <span class="token keyword">WHEN</span> x <span class="token operator">=</span> <span class="token number">2</span> <span class="token operator">AND</span> y <span class="token operator">=</span> <span class="token number">1</span> <span class="token keyword">THEN</span> <span class="token string">'b'</span>
+  <span class="token keyword">ELSE</span> <span class="token string">'z'</span>
+<span class="token keyword">END</span>
+
+<span class="token comment"># 1661 sum or substract using sun(case)</span>
+<span class="token keyword">select</span> machine_id<span class="token punctuation">,</span> 
+<span class="token function">round</span><span class="token punctuation">(</span><span class="token function">sum</span><span class="token punctuation">(</span><span class="token keyword">case</span> <span class="token keyword">when</span> activity_type <span class="token operator">=</span> <span class="token string">'end'</span> <span class="token keyword">then</span> <span class="token punctuation">`</span><span class="token keyword">timestamp</span><span class="token punctuation">`</span> <span class="token keyword">else</span> <span class="token operator">-</span><span class="token punctuation">`</span><span class="token keyword">timestamp</span><span class="token punctuation">`</span> <span class="token keyword">end</span><span class="token punctuation">)</span> 
+<span class="token operator">/</span><span class="token function">count</span><span class="token punctuation">(</span><span class="token keyword">distinct</span> process_id<span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">)</span> <span class="token keyword">as</span> processing_time
+<span class="token keyword">from</span> Activity
+<span class="token keyword">group</span> <span class="token keyword">by</span> machine_id</code></pre><h3 id="45759c95-fe2e-458a-8a63-e4ba1824cd90" class="">equal or greater/not equal/is null/not null/where not in</h3><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css')</style><pre id="d2dfb67b-f30f-4f22-b69d-d1eb7b398afc" class="code"><code>
+<span class="token comment"># equal or greater/not equal</span>
+<span class="token operator">>=</span><span class="token punctuation">,</span> <span class="token operator">&lt;></span>
+
+<span class="token comment"># 577 or, is null, is not null</span>
+<span class="token keyword">select</span> a<span class="token punctuation">.</span>name<span class="token punctuation">,</span> b<span class="token punctuation">.</span>bonus
+<span class="token keyword">from</span> Employee <span class="token keyword">as</span> a 
+<span class="token keyword">left</span> <span class="token keyword">join</span> Bonus <span class="token keyword">as</span> b 
+<span class="token keyword">on</span> a<span class="token punctuation">.</span>empId <span class="token operator">=</span> b<span class="token punctuation">.</span>empId
+<span class="token keyword">where</span> <span class="token punctuation">(</span>b<span class="token punctuation">.</span>bonus <span class="token operator">&lt;</span> <span class="token number">1000</span><span class="token punctuation">)</span> <span class="token operator">or</span> <span class="token punctuation">(</span>b<span class="token punctuation">.</span>bonus <span class="token operator">is</span> <span class="token boolean">null</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
+
+
+<span class="token comment"># 183 not in (select * as p)</span>
+<span class="token keyword">select</span> Name <span class="token keyword">as</span> <span class="token string">"Customers"</span> <span class="token keyword">from</span> Customers
+<span class="token keyword">where</span> Id <span class="token operator">not</span> <span class="token operator">in</span> <span class="token punctuation">(</span><span class="token keyword">select</span> <span class="token keyword">distinct</span> CustomerId <span class="token keyword">from</span> Orders <span class="token keyword">as</span> boughtId<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment"># 196 not in (select * as p), get min from each group</span>
+<span class="token keyword">delete</span> <span class="token keyword">from</span> Person <span class="token keyword">where</span> Id <span class="token operator">not</span> <span class="token operator">in</span> <span class="token punctuation">(</span>
+<span class="token keyword">select</span> <span class="token operator">*</span> <span class="token keyword">from</span> <span class="token punctuation">(</span>
+<span class="token keyword">select</span> <span class="token function">Min</span><span class="token punctuation">(</span>Id<span class="token punctuation">)</span> <span class="token keyword">from</span> Person
+<span class="token keyword">group</span> <span class="token keyword">by</span> Email<span class="token punctuation">)</span> <span class="token keyword">as</span> p 
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment"># odd/even</span>
+<span class="token punctuation">(</span>ID <span class="token operator">%</span> <span class="token number">2</span><span class="token punctuation">)</span> <span class="token operator">&lt;></span> <span class="token number">0</span> <span class="token comment"># odd</span>
+<span class="token function">mod</span><span class="token punctuation">(</span>id<span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token operator">=</span><span class="token number">1</span> <span class="token comment"># odd, faster</span>
+
+<span class="token comment"># decimal points</span>
+roung<span class="token punctuation">(</span>x<span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">)</span> <span class="token comment"># 2 decimal points</span>
+
+<span class="token comment"># percentage (with decimal points)</span>
+<span class="token function">round</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token function">Count</span><span class="token punctuation">(</span>Grade<span class="token punctuation">)</span><span class="token operator">*</span> <span class="token number">100</span> <span class="token operator">/</span> <span class="token punctuation">(</span><span class="token keyword">Select</span> <span class="token function">Count</span><span class="token punctuation">(</span><span class="token operator">*</span><span class="token punctuation">)</span> <span class="token keyword">From</span> MyTable<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">)</span></code></pre><ul id="5532639e-f731-4fd8-a299-1dd7f02f1453" class="bulleted-list"><li>pay attention to the &#x27;as p&#x27;, must have</li></ul><hr id="c368ea83-289d-41fb-ba70-d399babaeeec"/><h2 id="10fb4591-9d63-4ab4-a554-fc46bf00f034" class="">Group ranking/filtering</h2><p id="ee04878c-de94-4117-852e-c7c612784664" class="">group ranking</p><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css')</style><pre id="abaebd13-a909-42d8-b990-334ca171877f" class="code"><code><span class="token comment"># 586 get the customer id with largest number of order</span>
+<span class="token keyword">select</span> customer_number
+<span class="token keyword">from</span> orders
+<span class="token keyword">group</span> <span class="token keyword">by</span> customer_number
+<span class="token keyword">order</span> <span class="token keyword">by</span> <span class="token function">count</span><span class="token punctuation">(</span><span class="token operator">*</span><span class="token punctuation">)</span> <span class="token keyword">desc</span> <span class="token comment"># outside groupby sorting</span>
+<span class="token keyword">limit</span> <span class="token number">1</span><span class="token punctuation">;</span> </code></pre><p id="27f574e7-cab9-423f-b7cf-57b40bd01410" class="">over: faster</p><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css')</style><pre id="3b65c913-928f-45b9-8354-1931f63fc991" class="code"><code><span class="token comment"># 512 the first row of each group</span>
+<span class="token keyword">select</span> <span class="token keyword">distinct</span> player_id<span class="token punctuation">,</span>
+first_value<span class="token punctuation">(</span>device_id<span class="token punctuation">)</span> <span class="token keyword">over</span><span class="token punctuation">(</span><span class="token keyword">partition</span> <span class="token keyword">by</span> player_id <span class="token keyword">order</span> <span class="token keyword">by</span> event_date<span class="token punctuation">)</span> <span class="token keyword">as</span> device_id
+<span class="token keyword">from</span> Activity<span class="token punctuation">;</span>
+
+<span class="token comment"># 1050 </span>
+<span class="token keyword">select</span> <span class="token keyword">distinct</span> actor_id<span class="token punctuation">,</span> director_id
+<span class="token keyword">from</span>
+<span class="token punctuation">(</span><span class="token keyword">select</span> actor_id<span class="token punctuation">,</span> director_id<span class="token punctuation">,</span> <span class="token function">count</span><span class="token punctuation">(</span><span class="token operator">*</span><span class="token punctuation">)</span> <span class="token keyword">over</span> <span class="token punctuation">(</span><span class="token keyword">partition</span> <span class="token keyword">by</span> actor_id<span class="token punctuation">,</span>director_id<span class="token punctuation">)</span> <span class="token keyword">as</span> cnt
+<span class="token keyword">from</span> actordirector<span class="token punctuation">)</span> <span class="token keyword">as</span> t
+<span class="token keyword">where</span> cnt <span class="token operator">>=</span> <span class="token number">3</span></code></pre><p id="ba6f26ff-441c-47a8-9d30-961dd5fb3b56" class="">having/where: slower</p><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css')</style><pre id="db6391ce-8e12-466b-97e8-7272b6fb92c5" class="code"><code><span class="token comment"># 596</span>
+<span class="token comment"># where</span>
+<span class="token keyword">SELECT</span> class
+<span class="token keyword">FROM</span>
+    <span class="token punctuation">(</span><span class="token keyword">SELECT</span>
+        class<span class="token punctuation">,</span> <span class="token function">COUNT</span><span class="token punctuation">(</span><span class="token keyword">DISTINCT</span> student<span class="token punctuation">)</span> <span class="token keyword">AS</span> num
+    <span class="token keyword">FROM</span>
+        courses
+    <span class="token keyword">GROUP</span> <span class="token keyword">BY</span> class<span class="token punctuation">)</span> <span class="token keyword">AS</span> temp_table
+<span class="token keyword">WHERE</span> num <span class="token operator">>=</span> <span class="token number">5</span><span class="token punctuation">;</span> <span class="token comment"># filtering on table</span>
+<span class="token comment"># notice the alias</span>
+
+<span class="token comment"># 619 single greatest number</span>
+<span class="token comment"># having</span>
+<span class="token keyword">select</span> <span class="token function">Max</span><span class="token punctuation">(</span>num<span class="token punctuation">)</span> <span class="token keyword">as</span> num
+<span class="token keyword">from</span> 
+<span class="token punctuation">(</span><span class="token keyword">select</span> num <span class="token keyword">from</span> my_numbers
+<span class="token keyword">group</span> <span class="token keyword">by</span> num
+<span class="token keyword">having</span> <span class="token function">count</span><span class="token punctuation">(</span><span class="token operator">*</span><span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token keyword">as</span> t<span class="token punctuation">;</span>
+<span class="token comment"># where</span>
+<span class="token keyword">select</span> <span class="token function">Max</span><span class="token punctuation">(</span>num<span class="token punctuation">)</span> <span class="token keyword">as</span> num <span class="token comment"># ouside-group maximum</span>
+<span class="token keyword">from</span> 
+<span class="token punctuation">(</span><span class="token keyword">select</span> num<span class="token punctuation">,</span> <span class="token function">count</span><span class="token punctuation">(</span><span class="token operator">*</span><span class="token punctuation">)</span> <span class="token keyword">as</span> number
+ <span class="token keyword">from</span> my_numbers
+<span class="token keyword">group</span> <span class="token keyword">by</span> num
+<span class="token punctuation">)</span> <span class="token keyword">as</span> t
+<span class="token keyword">where</span> number <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+<span class="token comment"># wrong, give the max of each grou</span>
+<span class="token keyword">select</span> <span class="token function">Max</span><span class="token punctuation">(</span>num<span class="token punctuation">)</span> <span class="token comment"># the max is within-group max!!!</span>
+<span class="token keyword">from</span> my_numbers
+<span class="token keyword">group</span> <span class="token keyword">by</span> num
+<span class="token keyword">having</span> <span class="token function">count</span><span class="token punctuation">(</span><span class="token operator">*</span><span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>  <span class="token comment"># filterting on the groups!</span>
+
+<span class="token comment"># 1050</span>
+<span class="token comment"># having</span>
+<span class="token keyword">select</span> actor_id<span class="token punctuation">,</span> director_id
+<span class="token keyword">from</span> ActorDirector
+<span class="token keyword">group</span> <span class="token keyword">by</span> actor_id<span class="token punctuation">,</span> director_id
+<span class="token keyword">having</span> <span class="token function">count</span><span class="token punctuation">(</span><span class="token operator">*</span><span class="token punctuation">)</span> <span class="token operator">>=</span> <span class="token number">3</span><span class="token punctuation">;</span>
+<span class="token comment"># (group by) where</span>
+<span class="token keyword">select</span> actor_id<span class="token punctuation">,</span> director_id 
+<span class="token keyword">from</span> 
+<span class="token punctuation">(</span><span class="token keyword">select</span> actor_id<span class="token punctuation">,</span> director_id<span class="token punctuation">,</span> <span class="token function">count</span><span class="token punctuation">(</span><span class="token operator">*</span><span class="token punctuation">)</span> <span class="token keyword">as</span> cooperate_times
+ <span class="token keyword">from</span> ActorDirector
+<span class="token keyword">group</span> <span class="token keyword">by</span> actor_id<span class="token punctuation">,</span> director_id<span class="token punctuation">)</span> <span class="token keyword">as</span> t
+<span class="token keyword">where</span> t<span class="token punctuation">.</span>cooperate_times <span class="token operator">>=</span> <span class="token number">3</span><span class="token punctuation">;</span>
+
+<span class="token comment"># 1083</span>
+<span class="token comment"># having sum(condition)=1, count is wrong here</span>
+<span class="token keyword">select</span> s<span class="token punctuation">.</span>buyer_id 
+<span class="token keyword">from</span> sales s 
+<span class="token keyword">join</span> product p 
+<span class="token keyword">on</span> s<span class="token punctuation">.</span>product_id <span class="token operator">=</span> p<span class="token punctuation">.</span>product_id
+<span class="token keyword">group</span> <span class="token keyword">by</span> s<span class="token punctuation">.</span>buyer_id
+<span class="token keyword">having</span> <span class="token function">sum</span><span class="token punctuation">(</span>p<span class="token punctuation">.</span>product_name <span class="token operator">=</span> <span class="token string">'S8'</span><span class="token punctuation">)</span> <span class="token operator">></span> <span class="token number">0</span> <span class="token operator">and</span> <span class="token function">sum</span><span class="token punctuation">(</span>p<span class="token punctuation">.</span>product_name <span class="token operator">=</span> <span class="token string">'iPhone'</span><span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token number">0</span> <span class="token comment"># count is wrong here</span>
+<span class="token comment"># sum(x), sum(condition) as count </span>
+<span class="token keyword">having</span> <span class="token function">sum</span><span class="token punctuation">(</span>s<span class="token punctuation">.</span>sale_date <span class="token operator">between</span> <span class="token string">'2019-01-01'</span> <span class="token operator">and</span> <span class="token string">'2019-03-31'</span><span class="token punctuation">)</span> <span class="token operator">></span> <span class="token number">0</span>
+<span class="token operator">and</span> <span class="token function">sum</span><span class="token punctuation">(</span>s<span class="token punctuation">.</span>sale_date <span class="token operator">></span> <span class="token string">'2019-03-31'</span><span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token operator">not</span> <span class="token operator">between</span>
+
+<span class="token comment"># 1113 where + group by</span>
+<span class="token keyword">select</span> extra <span class="token keyword">as</span> report_reason<span class="token punctuation">,</span> <span class="token function">count</span><span class="token punctuation">(</span><span class="token keyword">distinct</span> post_id <span class="token punctuation">)</span> <span class="token keyword">as</span> report_count
+<span class="token keyword">from</span> Actions
+<span class="token keyword">where</span> <span class="token keyword">action</span> <span class="token operator">=</span> <span class="token string">'report'</span>
+<span class="token operator">and</span> action_date <span class="token operator">=</span> <span class="token string">'2019-07-04'</span>
+<span class="token keyword">group</span> <span class="token keyword">by</span> extra
+<span class="token punctuation">;</span> <span class="token comment"># notice that where should be put in front of group by when they are on the same level</span>
+</code></pre><p id="6352373a-6901-4e6e-9d3c-31fe12309736" class="">with</p><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css')</style><pre id="1b7d39b7-c1ab-4b28-be94-e85fd93a9919" class="code"><code><span class="token comment"># 1082</span>
+<span class="token keyword">with</span> cte <span class="token keyword">as</span> <span class="token punctuation">(</span>
+    <span class="token keyword">select</span> seller_id<span class="token punctuation">,</span> <span class="token function">sum</span><span class="token punctuation">(</span>price<span class="token punctuation">)</span> <span class="token keyword">as</span> price <span class="token keyword">from</span> sales
+<span class="token keyword">group</span> <span class="token keyword">by</span> seller_id
+<span class="token punctuation">)</span>
+<span class="token keyword">select</span> seller_id <span class="token keyword">from</span> cte <span class="token keyword">where</span> price <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token keyword">select</span> <span class="token function">max</span><span class="token punctuation">(</span>price<span class="token punctuation">)</span> <span class="token keyword">from</span> cte<span class="token punctuation">)</span>
+
+<span class="token comment"># 1435</span>
+<span class="token keyword">with</span> cte_2 <span class="token keyword">AS</span><span class="token punctuation">(</span>
+<span class="token keyword">SELECT</span> <span class="token string">'[0-5>'</span> <span class="token keyword">as</span> bin
+<span class="token keyword">union</span>
+<span class="token keyword">SELECT</span> <span class="token string">'[5-10>'</span>
+<span class="token keyword">union</span>
+<span class="token keyword">SELECT</span> <span class="token string">'[10-15>'</span>
+<span class="token keyword">union</span>
+<span class="token keyword">SELECT</span> <span class="token string">'15 or more'</span><span class="token punctuation">)</span>
+
+<span class="token keyword">select</span> cte_2<span class="token punctuation">.</span>bin<span class="token punctuation">,</span> <span class="token function">count</span><span class="token punctuation">(</span>duration<span class="token punctuation">)</span> <span class="token keyword">as</span> total
+<span class="token keyword">from</span>
+<span class="token punctuation">(</span><span class="token keyword">select</span> session_id<span class="token punctuation">,</span> duration<span class="token punctuation">,</span> <span class="token keyword">case</span>
+<span class="token keyword">when</span> duration<span class="token operator">/</span><span class="token number">60</span> <span class="token operator">>=</span> <span class="token number">0</span> <span class="token operator">and</span> duration<span class="token operator">/</span><span class="token number">60</span> <span class="token operator">&lt;</span> <span class="token number">5</span> <span class="token keyword">then</span> <span class="token string">'[0-5>'</span>
+<span class="token keyword">when</span> duration<span class="token operator">/</span><span class="token number">60</span> <span class="token operator">>=</span> <span class="token number">5</span> <span class="token operator">and</span> duration<span class="token operator">/</span><span class="token number">60</span> <span class="token operator">&lt;</span> <span class="token number">10</span> <span class="token keyword">then</span> <span class="token string">'[5-10>'</span>
+<span class="token keyword">when</span> duration<span class="token operator">/</span><span class="token number">60</span> <span class="token operator">>=</span> <span class="token number">10</span> <span class="token operator">and</span> duration<span class="token operator">/</span><span class="token number">60</span> <span class="token operator">&lt;</span> <span class="token number">15</span> <span class="token keyword">then</span> <span class="token string">'[10-15>'</span>
+<span class="token keyword">else</span> <span class="token string">'15 or more'</span>
+<span class="token keyword">end</span> <span class="token keyword">as</span> bin
+<span class="token keyword">from</span> Sessions<span class="token punctuation">)</span> <span class="token keyword">as</span> bins
+<span class="token keyword">right</span> <span class="token keyword">join</span> cte_2
+<span class="token keyword">on</span> bins<span class="token punctuation">.</span>bin <span class="token operator">=</span> cte_2<span class="token punctuation">.</span>bin
+
+<span class="token comment"># 1355 select max/min group count</span>
+<span class="token keyword">with</span> p <span class="token keyword">as</span> <span class="token punctuation">(</span><span class="token keyword">select</span> activity<span class="token punctuation">,</span> <span class="token function">count</span><span class="token punctuation">(</span>name<span class="token punctuation">)</span> counts
+<span class="token keyword">from</span> Friends
+<span class="token keyword">group</span> <span class="token keyword">by</span> activity<span class="token punctuation">)</span>
+<span class="token keyword">select</span> activity
+<span class="token keyword">from</span> p
+<span class="token keyword">where</span> counts <span class="token operator">not</span> <span class="token operator">in</span> <span class="token punctuation">(</span><span class="token keyword">select</span> <span class="token function">max</span><span class="token punctuation">(</span>counts<span class="token punctuation">)</span> <span class="token keyword">from</span> p <span class="token keyword">UNION</span> <span class="token keyword">select</span> <span class="token function">min</span><span class="token punctuation">(</span>counts<span class="token punctuation">)</span> <span class="token keyword">from</span> p<span class="token punctuation">)</span>
+
+<span class="token comment"># 550 </span>
+<span class="token comment"># wrong!!!!</span>
+<span class="token keyword">with</span> o <span class="token keyword">as</span> 
+<span class="token punctuation">(</span><span class="token keyword">select</span> <span class="token function">count</span><span class="token punctuation">(</span><span class="token keyword">distinct</span> player_id<span class="token punctuation">)</span> total_players
+<span class="token keyword">from</span> Activity<span class="token punctuation">)</span>
+<span class="token keyword">select</span> <span class="token function">round</span><span class="token punctuation">(</span><span class="token function">count</span><span class="token punctuation">(</span><span class="token keyword">distinct</span> a1<span class="token punctuation">.</span>player_id<span class="token punctuation">)</span><span class="token operator">/</span>total_players<span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">)</span> <span class="token keyword">as</span> fraction
+<span class="token keyword">from</span> Activity a1
+<span class="token keyword">join</span> Activity a2
+<span class="token keyword">on</span> a1<span class="token punctuation">.</span>player_id <span class="token operator">=</span> a2<span class="token punctuation">.</span>player_id
+<span class="token keyword">where</span> datediff<span class="token punctuation">(</span>a1<span class="token punctuation">.</span>event_date<span class="token punctuation">,</span> a2<span class="token punctuation">.</span>event_date<span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token number">1</span>
+<span class="token keyword">group</span> <span class="token keyword">by</span> a1<span class="token punctuation">.</span>player_id
+<span class="token comment"># correct </span>
+<span class="token keyword">select</span> <span class="token function">round</span><span class="token punctuation">(</span><span class="token function">count</span><span class="token punctuation">(</span><span class="token keyword">distinct</span> a1<span class="token punctuation">.</span>player_id<span class="token punctuation">)</span><span class="token operator">/</span><span class="token punctuation">(</span><span class="token keyword">select</span> <span class="token function">count</span><span class="token punctuation">(</span><span class="token keyword">distinct</span> player_id<span class="token punctuation">)</span>
+<span class="token keyword">from</span> Activity<span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">)</span> <span class="token keyword">as</span> fraction
+<span class="token keyword">from</span> Activity a1
+<span class="token keyword">join</span> Activity a2
+<span class="token keyword">on</span> a1<span class="token punctuation">.</span>player_id <span class="token operator">=</span> a2<span class="token punctuation">.</span>player_id
+<span class="token keyword">where</span> datediff<span class="token punctuation">(</span>a1<span class="token punctuation">.</span>event_date<span class="token punctuation">,</span> a2<span class="token punctuation">.</span>event_date<span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token number">1</span>
+<span class="token keyword">group</span> <span class="token keyword">by</span> a1<span class="token punctuation">.</span>player_id</code></pre><h3 id="beb21d98-ace9-4de6-a9c1-c96493483078" class="">Conversion</h3><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css')</style><pre id="e4822d4d-69a2-4944-b933-2dc951b19f0f" class="code"><code><span class="token comment"># lowercase to uppercase</span>
+LOWER<span class="token punctuation">(</span><span class="token punctuation">)</span>
+UPPER<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+<span class="token comment"># uppercase a part</span>
+concat<span class="token punctuation">(</span>Upper<span class="token punctuation">(</span><span class="token keyword">left</span><span class="token punctuation">(</span>name<span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token keyword">right</span><span class="token punctuation">(</span>name<span class="token punctuation">,</span><span class="token punctuation">(</span>length<span class="token punctuation">(</span>name<span class="token punctuation">)</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span> 
+<span class="token comment"># SUBSTRING(input_string, start, length);</span>
+<span class="token comment"># right(name,(length(name)-1)) --- the other alphabets on the right side</span>
+
+<span class="token comment"># remove spaces </span>
+trim<span class="token punctuation">(</span><span class="token string">'       you love'</span><span class="token punctuation">)</span> <span class="token comment">--- 'youlove'</span>
+
+</code></pre><h3 id="d1ab6107-4dde-42a1-8905-21d7187ef6b9" class="">date</h3><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css')</style><pre id="9846169f-5d94-42d6-bec2-d96a252689ef" class="code"><code><span class="token comment"># 197 </span>
+<span class="token keyword">select</span> a<span class="token punctuation">.</span>id <span class="token keyword">from</span> weather <span class="token keyword">as</span> a<span class="token punctuation">,</span> weather <span class="token keyword">as</span> b
+<span class="token keyword">where</span> a<span class="token punctuation">.</span>Temperature <span class="token operator">></span> b<span class="token punctuation">.</span>Temperature
+<span class="token operator">and</span> datediff<span class="token punctuation">(</span>a<span class="token punctuation">.</span>recordDate<span class="token punctuation">,</span> b<span class="token punctuation">.</span>recordDate<span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+
+<span class="token keyword">where</span> w<span class="token punctuation">.</span><span class="token keyword">day</span> <span class="token operator">like</span> <span class="token string">'2019-11%'</span> <span class="token comment"># in 2019 Nov</span>
+
+<span class="token keyword">where</span> column1 <span class="token operator">LIKE</span> <span class="token string">'%word3%'</span> <span class="token comment"># containing a word</span>
+
+<span class="token keyword">where</span> <span class="token keyword">day</span> <span class="token punctuation">(</span><span class="token operator">not</span><span class="token punctuation">)</span> <span class="token operator">between</span> <span class="token string">'2019-11-01'</span> <span class="token operator">and</span> <span class="token string">'2019-11-30'</span>
+
+<span class="token keyword">group</span> <span class="token keyword">by</span> <span class="token keyword">month</span>? yyyy<span class="token operator">-</span>mm<span class="token operator">-</span>dd <span class="token operator">-</span> yyyy<span class="token operator">-</span>mm<span class="token operator">-</span>dd
+date_format<span class="token punctuation">(</span>sale_date<span class="token punctuation">,</span><span class="token string">'%Y-%m'</span><span class="token punctuation">)</span> <span class="token comment">--- 2011-12-01 - 2011-12</span>
+<span class="token keyword">left</span><span class="token punctuation">(</span>order_date<span class="token punctuation">,</span> <span class="token number">7</span><span class="token punctuation">)</span> <span class="token comment">--- --- 2011-12-01 - 2011-12</span></code></pre><p id="f788004c-2630-4067-b512-2a0f0a2733d2" class="">
+</p><h3 id="7d6c8cb5-93d2-40a5-ab0a-f31259dd029b" class="">regular expression </h3><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css')</style><pre id="770fbacb-a3dc-45ff-a5de-0e7bd3a32a93" class="code"><code><span class="token operator">regexp</span></code></pre><h2 id="51a439be-3372-4431-9452-1ae7b167ffef" class="">Create Functions</h2><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css')</style><pre id="e04530b8-9abb-4a26-8d21-24e88ddb70e8" class="code"><code><span class="token comment"># 177 Nth highest salary</span>
+<span class="token keyword">CREATE</span> <span class="token keyword">FUNCTION</span> getNthHighestSalary<span class="token punctuation">(</span>N <span class="token keyword">INT</span><span class="token punctuation">)</span> <span class="token keyword">RETURNS</span> <span class="token keyword">INT</span>
+<span class="token keyword">BEGIN</span>
+<span class="token keyword">declare</span> M <span class="token keyword">int</span><span class="token punctuation">;</span> <span class="token comment"># notice how to set variable</span>
+<span class="token keyword">set</span> M<span class="token operator">=</span>N<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span> <span class="token comment"># how to convey value</span>
+  <span class="token keyword">RETURN</span> <span class="token punctuation">(</span>
+      <span class="token comment"># Write your MySQL query statement below.</span>
+      <span class="token keyword">select</span> ifnull<span class="token punctuation">(</span>
+          <span class="token punctuation">(</span><span class="token keyword">select</span> <span class="token keyword">distinct</span> Salary 
+          <span class="token keyword">from</span> Employee
+          <span class="token keyword">order</span> <span class="token keyword">by</span> Salary <span class="token keyword">desc</span>
+          <span class="token keyword">limit</span> <span class="token number">1</span> <span class="token keyword">offset</span> M<span class="token punctuation">)</span> <span class="token comment"># can not use N-1 here</span>
+            <span class="token punctuation">,</span><span class="token boolean">null</span><span class="token punctuation">)</span> <span class="token string">'getNthHighestSalary(N)'</span>
+  <span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">END</span></code></pre><p id="1894ac9f-4eec-421f-8f62-22b22039e92c" class="">
+</p><p id="8b9a1323-3e00-4f51-af12-01d847ceb7b1" class="">
+</p><figure id="0c6e9d12-a7c3-4fe4-bb9e-b959559563fe" class="link-to-page"><a href="https://www.notion.so/Recommendation-System-0c6e9d12a7c34fe4bb9eb959559563fe"><span class="icon">🎰</span>Recommendation System</a></figure><figure id="226269a7-4a0e-4398-b24d-3ab32ed86e51" class="link-to-page"><a href="https://www.notion.so/Time-Series-Analysis-226269a74a0e4398b24d3ab32ed86e51"><span class="icon">⏰</span>Time Series Analysis</a></figure></div></article></body></html>
