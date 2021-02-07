@@ -1,0 +1,397 @@
+---
+title: "Walmart Forecasting"
+output:
+  html_notebook: default
+  html_document:
+    df_print: paged
+  pdf_document: default
+---
+
+loading required libraries. 
+```{r}
+library(tidyverse)
+library(ggplot2)
+library(forecast)
+library(fpp2)
+library(fma)
+library(lmtest)
+library(dbplyr)
+library(lubridate)
+library(seasonal)
+library(urca)
+library(tseries)
+library(gridExtra)
+```
+
+```{r}
+food<- read_csv('../data/calendar_factors.csv')
+food.252 = as.vector(unlist(food['sales']))
+```
+
+# Exploratory Data Analysis (EDA)
+```{r}
+# frequency m = 365
+foods_sale = ts(food.252, start=c(2011,29), end = c(2016,144), frequency = 365) # 1941 days 
+foods_train = window(foods_sale, start=c(2011,29), end = c(2016,116) ) # 1913 days 1-1913
+foods_test = window(foods_sale, start=c(2016,117), end = c(2016,144) ) # 28 days 1914-1941
+```
+
+
+```{r}
+# frequency m = 7
+daily_ts = ts(food.252, start=c(1,7), end = c(279,1), frequency = 7) # 1-1941: 2011-1-29 ~ 2016-5-22
+daily_train = subset(daily_ts, end = 1913) # training set: 1-1913, 2011-1-29 ~ 2016-4-25 c(1,7)
+daily_test = subset(daily_ts, start = 1914) # test set: 1913-1941, 2016-4-26 ~ 2016-5-22 c(275,2)
+```
+
+
+```{r}
+# m=365
+autoplot(foods_train) + ggtitle("Daily unit sales (01/19/2011 - 05/12/2016)") + ylab("Figure.1 Daily unit sales") + xlab("Year")
+autoplot(decompose(foods_train, type='additive'))+ ggtitle("Figure.2 Additive decomposistion") + xlab("Year") + ylab("Component") # additive decomposition
+autoplot(decompose(foods_train, type='mult')) + ggtitle("Multiplicative decomposition") + xlab("Year") + ylab("Component") # multiplicative decomposition
+hist(foods_train, main = 'Distribution of daily unit sales', xlab='Daily unit sale')
+```
+
+
+```{r}
+# m=7
+autoplot(daily_train) + ggtitle("Unit sale time plot")
+autoplot(decompose(daily_train, type='additive')) # additive decomposition
+autoplot(decompose(daily_train, type='mult')) # multiplicative decomposition
+hist(daily_train)
+autoplot(diff(daily_train, lag=7))
+ggsubseriesplot(daily_train) + ggtitle("Unit sales during a week") # unit sale is higher on weekends
+```
+
+```{r}
+summary(foods_train)
+```
+
+
+```{r}
+# m=365
+print(Acf(foods_train))  # non-stationary, as r1 is large and positive, and the ACF drops to zero slowly
+summary(ur.kpss(foods_train)) # the test-statistic 3.01 is much larger than the 1pct 0.74, which means that the data is not stationary
+summary(ur.kpss(diff(foods_train))) 
+kpss.test(foods_train) # 0.01
+adf.test(foods_train) # 0.01
+Box.test(foods_train) # p-value is tiny, reject the null hypothesis that there's no autocorrelation.
+Box.test(foods_train,type='Lj') # same as Box-Pierce test
+BoxCox.lambda(foods_train) # 0.31
+# m=7
+BoxCox.lambda(daily_ts) # 0.204
+BoxCox.lambda(daily_train) # 0.204
+```
+
+```{r}
+nsdiffs(foods_train) # 0: seasonal differencing is not required 0
+ndiffs(foods_train) # 1:  This process of using a sequence of KPSS tests to determine the appropriate number of first differences is carried out by the function ndiffs().As we saw from the KPSS tests above, one difference is required to make the sale data stationary.
+
+nsdiffs(daily_train) # 1
+ndiffs(diff(daily_train, lag = 7)) # 0
+```
+
+# Linear regression model
+```{r}
+food_train_df = food[1:1913,]
+food_test_df = food[1914:1941,]
+food_train_df
+```
+
+```{r}
+round(cor(food_train_df[, c(5,6,7,9,10,11,12)]),2)
+```
+## lm()
+```{r}
+fit.lm1 = lm(formula = sales ~ lag(sales) + as.factor(wday) + as.factor(month)+ as.factor(year) + sporting_days + cultrural_days + national_days + religious_days, data = food_train_df)
+summary(fit.lm1)
+checkresiduals(fit.lm1)
+CV(fit.lm1)
+```
+```{r}
+autoplot(daily_train, series='Observations') +
+  autolayer(ts(predict.lm(fit.lm1), frequency = 7), series = 'Linear regression') +
+  ylab("Unit sales") +
+  xlab("Week") + 
+  ggtitle("Daily unit sales (linear regression model)")
+
+```
+```{r}
+autoplot(daily_test, series = 'Observations') + 
+  autolayer(ts(predict.lm(fit.lm1, food_test_df), frequency = 7, start = c(275,2) ), series = 'Linear regression') +
+  ylab("Unit sales") +
+  xlab("Week") + 
+  ggtitle("Predicted daily unit sales (linear regression model)")
+```
+
+##  tslm()
+```{r}
+lambda = BoxCox.lambda(daily_train)
+fit.tslm1 = tslm(daily_train ~ trend + season)
+summary(fit.tslm1)
+checkresiduals(fit.tslm1)
+CV(fit.tslm1) # 1.022361e+04
+
+autoplot(daily_train, series = 'Observations') +
+  autolayer(fitted(fit.tslm1), series = 'fitted') +
+  xlim(50, 100)
+  
+autoplot(daily_test, series = 'Observations') +
+  autolayer(forecast(fit.tslm1, h=28), PI = F, series = 'linear regression model') + 
+  ylab("Predited unit sales") +
+  xlab("Week") + 
+  ggtitle("Predicted daily unit sales (linear regressiom model)")
+```
+
+## tslm with fouriser terms
+```{r}
+fit.tslmfouriser1 = tslm(daily_train ~ trend + fourier(daily_train, K=3))
+summary(fit.tslmfouriser1)
+checkresiduals(fit.tslmfouriser1)
+CV(fit.tslmfouriser1)
+```
+
+# ETS model
+```{r}
+fit.ets0 = ets(daily_train) # MAM, 23422.99
+fit.ets0 
+fit.ets1 = ets(daily_train, lambda = 'auto') # (A,N,A)  12437.65
+fit.ets1
+fit.ets2 = ets(daily_train, lambda = 0) # (A,N,A) 9747.518
+fit.ets2
+fit.ets3 = ets(daily_train, lambda = 0, damped = TRUE) # (A,Ad,A), 9767.98
+fit.ets3
+# fit.ets3 = ets(diff(daily_train,lag=7), lambda = 0)
+# fit.ets3# no model to be fitted in
+```
+
+# Holt-Winters model
+```{r}
+fit.hw0 = hw(daily_train,h = 28) # "addtive" 23774
+fit.hw0$model
+fit.hw1 = hw(daily_train, seasonal = "additive",h = 28) # 23774.33 
+fit.hw1$model
+fit.hw2 = hw(daily_train, seasonal = "mult", h = 28) # 23462.01
+fit.hw2$model
+fit.hw3 = hw(daily_train, seasonal = "mult", damped = T, h = 28) # 23564.84
+fit.hw3$model
+fit.hw4 = hw(daily_train, seasonal = "additive", h = 28, lambda = 'auto') # 12442.36
+fit.hw4$model
+fit.hw5 = hw(daily_train, seasonal = "additive", h = 28, lambda = 0 ) # 9759.407 AAA
+fit.hw5$model
+# fit.hw6 = hw(daily_train, seasonal = "mult", h = 28, lambda = 0 ) # forbidden combination of mult and lambda
+# fit.hw6$model 
+```
+
+```{r}
+fit.ets2 %>% forecast(h=28) %>%
+  autoplot() +
+  ylab("Unit sales") +
+  autolayer(fitted(fit.ets2), series = 'ETS(A, N, A)')
+```
+
+```{r}
+fit.ets2 %>% forecast(h=28) %>%
+  autoplot() +
+  ylab("Unit sales") + 
+  xlim(275, 280)
+```
+
+```{r}
+fit.ets2 %>% forecast(h=28) %>%
+  autoplot(PI = F, series = 'ETS(A, N, A)') +
+  ylab("Unit sales") + 
+  xlim(275, 279) +
+  autolayer(daily_test) +
+  autolayer(fit.hw5, series = "additive + log", PI = F)
+```
+
+```{r}
+autoplot(daily_train, series = 'observations') +
+  autolayer(fit.hw5, PI = F) +
+  autolayer(fitted(fit.hw5),series = "additive + log")+
+  ggtitle('Observations and predictions from additive HW model with log transformation')
+```
+
+```{r}
+autoplot(daily_test, series = 'Observations') +
+  autolayer(fit.hw5, PI = F, series = 'Additive HW model') + 
+  ylab("Predited unit sales") +
+  xlab("Week") + 
+  ggtitle("Predicted daily unit sales (additive HW model with log transformation")
+```
+
+```{r}
+checkresiduals(fit.hw5)
+```
+
+```{r}
+accuracy(fit.hw5, daily_test) # additive + log
+```
+
+# Arima
+```{r}
+summary(ur.kpss(daily_train))  # not stationary
+summary(ur.kpss(diff(daily_train))) # stationary
+summary(ur.kpss(diff(daily_train, lag=7))) # stationary
+lambda = BoxCox.lambda(daily_train) 
+```
+
+```{r}
+autoplot(diff(daily_train, lag=7)) # seasonally differenced data
+daily_train %>% ggtsdisplay() 
+daily_train %>%  diff(lag=7) %>% ggtsdisplay()
+```
+## choose ARIMA models manually
+```{r}
+daily_train %>% 
+  Arima(c(0,0,1), seasonal = c(0,1,1)) %>% 
+  residuals() %>% ggtsdisplay()
+```
+# introduce variation
+```{r}
+(daily_train %>% 
+  Arima(c(0,0,1), seasonal = c(0,1,1))) # 14786.4
+(daily_train %>% 
+  Arima(c(1,0,1), seasonal = c(0,1,1))) # 14663.87
+(daily_train %>% 
+  Arima(c(2,0,1), seasonal = c(0,1,1))) # 14577.05
+(daily_train %>% 
+  Arima(c(0,0,1), seasonal = c(0,1,2))) # 14786.22
+(daily_train %>% 
+  Arima(c(1,0,1), seasonal = c(0,1,2))) # 14662.2
+(daily_train %>% 
+  Arima(c(2,0,1), seasonal = c(0,1,2))) # 14568.07
+(daily_train %>% 
+  Arima(c(2,0,1), seasonal = c(1,1,2))) # 14556.24 *****
+(daily_train %>% 
+  Arima(c(2,0,1), seasonal = c(2,1,2))) # 14559.84
+```
+## manually selected ARIMA
+```{r}
+daily_train %>% 
+  Arima(c(2,0,1), seasonal = c(1,1,2)) %>% 
+  residuals() %>% ggtsdisplay()
+(fit.arima1 <- daily_train %>% 
+  Arima(c(2,0,1), seasonal = c(1,1,2)))
+checkresiduals(fit.arima1)
+```
+
+```{r}
+autoplot(daily_test, series = 'Observations') +
+  autolayer(forecast(fit.arima1, h=28), series = 'ARIMA', PI=F) + 
+  ggtitle('Predicted daily unit sales (ARIMA(2,0,1)(1,1,2)[7])') +
+  ylab('Unit sales') + 
+  xlab('Week')
+```
+
+```{r}
+autoplot(daily_test, series = 'Observations') +
+  autolayer(fitted(fit.arima1)) +
+  autolayer(forecast(fit.arima1, h=28), series = 'ARIMA', PI=F) +
+  ggtitle('Daily unit sales (ARIMA(2,0,1)(1,1,2)[7])') +
+  ylab('Unit sales') + 
+  xlab('Week')
+```
+## auto.arima suggests ARIMA(1,0,1)(0,1,2)[7] model
+```{r}
+fit.arimalog = auto.arima(daily_train)
+checkresiduals(fit.arimalog)
+autoplot(daily_test, series = 'Observations') +
+  autolayer(forecast(fit.arimalog, h=28), PI=F, series = 'Auto arima') +
+  xlab('Week') +
+  ylab('Unit sales') + 
+  ggtitle('Predicted daily unit sales')
+```
+
+
+```{r}
+# arimalog <- forecast(fit.arimalog,h=28)
+# accuracy(InvBoxCox(as.numeric(arimalog$mean),0),daily_test)
+# autoplot(daily_test) +
+#   autolayer(ts(InvBoxCox(as.numeric(arimalog$mean)),0))
+# autoplot(InvBoxCox(as.numeric(arimalog$mean),0))
+# start(daily_test)
+# 
+# ts_df <-ts(InvBoxCox(as.numeric(arimalog$mean),0), start=c(275,2), frequency = 7)
+# autoplot(daily_test) + 
+#   autolayer(ts_df, series = 'arimalog') + 
+#   autolayer(fit.arima0, series = 'autoarima')
+# daily_ts = ts(food.252, start=c(1,7), end = c(279,1), frequency = 7) 
+# 
+# daily_train %>% 
+#  auto.arima() %>% 
+#   residuals() %>% ggtsdisplay()
+# (fit.arima0 <- daily_train %>% 
+#   auto.arima())
+# checkresiduals(fit.arima0)
+# 
+# forecast(fit.arima0, h=28)
+# 
+# autoplot(daily_test) +
+#   autolayer(forecast(fit.arimaauto, h=28), PI = F, series = "Auto") + 
+#   autolayer(ts_df, series = 'arimalog')
+# 
+# accuracy(forecast(fit.arimaauto, h=28), daily_test) # accuracy for auto arima
+# accuracy(ts_df, daily_test) # accuracy for manually optimzed arima
+```
+
+# dynamic regression
+```{r}
+plots <- list()
+for (i in seq(3)) {
+  fit <- auto.arima(daily_train, xreg = fourier(daily_train, K = i),
+    seasonal = FALSE, lambda = 0)
+  plots[[i]] <- autoplot(forecast(fit,
+      xreg=fourier(daily_train, K=i, h=28))) +
+    xlim(250,280) +
+    xlab(paste("K=",i,"   AICC=",round(fit[["aicc"]],2))) +
+    ylab("unit sales")
+}
+gridExtra::grid.arrange(
+  plots[[1]],plots[[2]],plots[[3]],nrow=3)
+```
+```{r}
+checkresiduals(fit.dynamic3)
+```
+
+
+```{r}
+(fit.dynamic3 <- auto.arima(daily_train, xreg = fourier(daily_train, K = 3),
+    seasonal = FALSE, lambda = 0))
+autoplot(daily_test, series = 'Observations') +
+  autolayer(forecast(fit.dynamic3,
+      xreg=fourier(daily_train, K=i, h=28)), PI = F, series = 'Dynamic regression') +
+    ylab("unit sales") +
+  xlab("Week") +
+  ggtitle('Predicted unit sales (dynamic regression with ARIMA(2,1,1) errors (K=3))')
+  
+```
+# Comparison
+## Accuracy
+```{r}
+print("Linear regression")
+accuracy(ts(predict.lm(fit.lm1, food_test), frequency = 7, start = c(275,2)), daily_test)
+print("Additice Holt-Winters' model with log transformation")
+accuracy(fit.hw5, daily_test)
+print("Manually optimozed ARIMA(2,0,1)(1,1,2)[7]")
+accuracy(forecast(fit.arima1, h=28), daily_test)
+print("Dynamic regression with ARIMA(2,1,1) errors (K=3)")
+accuracy(forecast(fit.dynamic3,
+      xreg=fourier(daily_train, K=3, h=28)), daily_test)
+```
+
+## Prediction curves
+```{r}
+autoplot(daily_test, series = 'Observations') + 
+  autolayer(ts(predict.lm(fit.lm1, food_test), frequency = 7, start = c(275,2) ), series = 'Linear regression') +
+  autolayer(fit.hw5, PI = F, series = 'Holt-Winters model (log)') + 
+  autolayer(forecast(fit.arima1, h=28), series = 'ARIMA', PI=F) +
+  autolayer(forecast(fit.dynamic3, xreg=fourier(daily_train, K=i, h=28)), PI = F, series = 'Dynamic regression') +
+  ylab("Predited unit sales") +
+  xlab("Week") +
+  ggtitle("Predicted daily unit sales")
+  
+```
+

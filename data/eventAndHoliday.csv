@@ -1,0 +1,31 @@
+,event/holiday,type
+0,NBAFinalsEnd,Sporting
+1,NBAFinalsStart,Sporting
+2,SuperBowl,Sporting
+3,Cinco De Mayo,Cultural
+4,Easter,Cultural
+5,Father's day,Cultural
+6,Halloween,Cultural
+7,Mother's day,Cultural
+8,StPatricksDay,Cultural
+9,ValentinesDay,Cultural
+10,Christmas,National
+11,ColumbusDay,National
+12,IndependenceDay,National
+13,LaborDay,National
+14,MartinLutherKingDay,National
+15,MemorialDay,National
+16,NewYear,National
+17,PresidentsDay,National
+18,Thanksgiving,National
+19,VeteransDay,National
+20,Chanukah End,Religious
+21,Eid al-Fitr,Religious
+22,EidAlAdha,Religious
+23,LentStart,Religious
+24,LentWeek2,Religious
+25,OrthodoxChristmas,Religious
+26,OrthodoxEaster,Religious
+27,Pesach End,Religious
+28,Purim End,Religious
+29,Ramadan starts,Religious
