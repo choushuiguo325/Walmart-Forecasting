@@ -2,7 +2,7 @@
 
 ## Project Description
 
-In this project, our group performed 28-day unit sales predictions using four models for one Walmart product (FOODS_3_352) based on the Walmart five-year unit sales data from [Kaggle](https://www.kaggle.com/c/m5-forecasting-accuracy/data).
+In this project, our group performed 28-day unit sales predictions using four models for one Walmart product (FOODS_3_352) based on the Walmart five-year unit sales data from [Kaggle](https://www.kaggle.com/c/m5-forecasting-accuracy/data).<br/>
 First, we performed basic data cleaning and visualization and explored the sales pattern. Then, we applied regression models, the ETS (error, trend, seasonality) model, the seasonal ARIMA (auto-regressive, integrated, moving average) model, and the dynamic regression model to further decompose the data and to do forecasting. Finally, we evaluated the model performance of prediction based on the parameter RMSE. 
 
 * All the project files are contained in this repo
@@ -11,7 +11,7 @@ First, we performed basic data cleaning and visualization and explored the sales
 
 ## File Description
 
-### 1. `Data`
+### 1. `data`
 
 * `calendar_factors.csv` contains the targeted sales data with cleaned and prepared calendar dummy variables
 * `calendar.csv` contains the raw calendar variables information 
